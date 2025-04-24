@@ -14,15 +14,15 @@
     </div>
     <div class="add-money-container">
         <p>
-        $<input type="number" placeholder="1000" value={{this.addMoney}}>
+        $<input type="number" placeholder="1000" value={{this.addMoney}} name={{this.addAmount}}>
         </p>
         
         <div class="add-amount">
             {{#each this.moneyBtns as |btn|}}
-                <button {{on "click" (fn this.onChangeMoney btn)}}>+ {{btn}}</button>
+                <button type="button" {{on "click" (fn this.onChangeMoney btn)}}>+ {{btn}}</button>
             {{/each}}
         </div>
-    <button class="add-money-btn" {{on 'click' this.addToWallet}}>Add Money To Wallet</button>
+    <button class="add-money-btn" type="button" {{on 'click' this.addToWallet}}>Add Money To Wallet</button>
 
     </div>
 

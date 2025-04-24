@@ -31,7 +31,12 @@
 .headbar-container button{
     padding: 0 20px;
     border: none;
-    background-color: rgb(30, 30, 30);
+    background-color: rgb(30 30 30);
     border-radius: 20px;
     color: white;
+    cursor: pointer;
+}
+
+.headbar-container button:hover{
+    background-color: rgb(55 55 55);    
 }

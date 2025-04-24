@@ -66,12 +66,17 @@ export default class Home extends Component {
 
     @action
     onChangeMoney(amt){
-        this.addMoney += amt
+        this.addMoney += amt;
     }
 
     @action
     addToWallet(){
         this.currentAmount += this.addMoney;
         this.addMoney = 0;
+    }
+
+    @action
+    setAddMoney(e) {
+        console.log(e.value)
     }
 }

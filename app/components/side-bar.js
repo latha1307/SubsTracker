@@ -3,7 +3,7 @@ import Component from '@glimmer/component';
 
 export default class SideBar extends Component {
     navItems1 = [
-        { label: 'Home', img: 'assets/icons/home (1).png'},
+        { label: 'Home', img: 'assets/icons/home (1).png', path: 'home'},
         { label: 'Subscriptions', img: 'assets/icons/subscription 1.png'},
         { label: 'Spending', img: 'assets/icons/dollar-coin 1.png'},
     ]
