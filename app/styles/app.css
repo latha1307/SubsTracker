@@ -1,1 +1,12 @@
-/* Ember supports plain CSS out of the box. More info: https://cli.emberjs.com/release/advanced-use/stylesheets/ */
+@import url('./_mobileView.css');
+@import url('./_home.css');
+@import url('./_add.css');
+@import url('./_sideBar.css');
+@import url('./_headBar.css');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Inter, sans-serif;
+}

@@ -1,0 +1,14 @@
+.mobile-view{
+    margin: auto;
+    margin-top: 20px;
+    width: 400px;
+    height: 700px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: rgb(255 255 255);
+    box-shadow: 1px 1px 15px 0 rgb(0 0 0 / 10%);
+}
+
+.container{
+    padding: 20px;
+}

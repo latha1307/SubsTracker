@@ -1,0 +1,25 @@
+<div class="sidebar-container">
+    <h1 class="logo-head">subTracker</h1>
+    <div class="nav1">
+        <h4>Tracking</h4>
+        <div>
+            {{#each this.navItems1 as |item|}}
+                <div class="nav1-items">
+                    <img src={{item.img}} alt="">
+                    <p class="label1">{{item.label}}</p>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+    <div class="nav2">
+        <h4>Profile</h4>
+        <div>
+            {{#each this.navItems2 as |item|}}
+                <div class="nav1-items">
+                    <img src={{item.img}} alt="">
+                    <p class="label1">{{item.label}}</p>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+.headbar-container{
+    z-index: 40px;
+    position: fixed;
+    margin-left: 300px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 75vw;
+}
+
+.headbar-container .lables{
+    display: flex;
+}
+
+.headbar-container .lables .items{
+    padding: 4px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.headbar-container .lables .items:hover{
+    background-color: #d2d2d2;
+}
+
+.head-container{
+    background-color: #f7f7f7;
+    padding: 4px;
+    border-radius: 10px;
+}
+
+.headbar-container button{
+    padding: 0 20px;
+    border: none;
+    background-color: rgb(30, 30, 30);
+    border-radius: 20px;
+    color: white;
+}

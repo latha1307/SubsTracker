@@ -1,0 +1,33 @@
+<div class="add-header">
+    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+<h2 >Add New Subscription</h2>
+</div>
+
+<form class="add-form">
+    <div class="form-elem">
+        <label>Name:</label>
+        <input type="text">
+    </div>
+    <div class="form-elem">
+        <PowerSelect class="power" @selected={{this.selectedPlan}} @options={{this.subPlans}} @onChange={{this.changePlan}} @labelText="Subscription Plan" as |name|>
+            {{name}}
+        </PowerSelect>
+    </div>
+    <div class="form-elem">
+        <PowerSelect class="power" @selected={{this.selectedPlan}} @options={{this.subPlans}} @onChange={{this.changePlan}} @labelText="Subscription Plan" as |name|>
+            {{name}}
+        </PowerSelect>
+    </div>
+    <div class="form-elem">
+        <label>Amount:</label>
+        <input type="text">
+    </div>
+    <div class="form-elem">
+        <label>Category:</label>
+        <input type="text">
+    </div>
+    <div class="form-elem">
+        <label>Payment Method:</label>
+        <input type="text">
+    </div>
+</form>

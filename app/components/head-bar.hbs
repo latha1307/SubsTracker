@@ -1,0 +1,14 @@
+<div class="headbar-container"> 
+    <div class="head-container">
+        <div class="lables">
+            {{#each this.headItems as |item|}}
+            {{#if item.isSelected}}
+                <p class="items" style="background-color: white;">{{item.label}}</p>
+            {{else}}
+                <p class="items" >{{item.label}}</p>
+            {{/if}}
+            {{/each}}
+        </div>
+    </div>
+    <button>Add new subscription</button>
+</div>
