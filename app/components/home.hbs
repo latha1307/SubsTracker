@@ -14,7 +14,7 @@
     </div>
     <div class="add-money-container">
         <p>
-        $<input type="number" placeholder="1000" value={{this.addMoney}} name={{this.addAmount}}>
+        $<input type="number" placeholder="1000" value={{this.addMoney}} {{on 'input' this.addAmount}}>
         </p>
         
         <div class="add-amount">

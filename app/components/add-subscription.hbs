@@ -1,35 +1,80 @@
-<div class="add-container">
-    <div class="add-header">
-    <i class="fa fa-chevron-left" aria-hidden="true"></i>
-<h2 >Add New Subscription</h2>
-</div>
+<div class="add-overall">
+    <div class="add-container">
+        <div class="add-header">
+            <i class="fa fa-chevron-left" aria-hidden="true" {{on 'click' this.back}}></i>
+            <h2>Add New Subscription</h2>
+        </div>
+        <form class="add-form" {{on 'submit' this.addSubscription}} >
+            <div class="add-elem">
+                <div class="icon-width">
+                <label> <i class="fa fa-credit-card-alt" aria-hidden="true"></i></label>
 
-<form class="add-form">
-    <div class="form-elem">
-        <label>Name:</label>
-        <input type="text">
+                </div>
+                <input type="text" placeholder="Subscription Name" {{on 'input' this.setSubName}} value={{this.subName}}>
+            </div>
+            <div class="add-elem">
+                <div class="icon-width">
+                <label> <i class="fa fa-tasks" aria-hidden="true"></i></label>
+
+                </div>
+                <PowerSelect class="power-plan" @selected={{this.plan}}  @options={{this.plans}} @onChange={{fn (mut this.plan)}} as |subPlan|>
+                 {{subPlan}}
+                </PowerSelect>
+            </div>
+            <div class="add-elem">
+                <div class="icon-width">
+                <label> <i class="fa fa-repeat" aria-hidden="true"></i></label>
+                </div>
+                <PowerSelect class="power-plan" @selected={{this.billCycle}} @options={{this.cycle}} @onChange={{fn (mut this.billCycle)}} as |cycle|>
+                     {{cycle}}
+                </PowerSelect>
+            </div>
+            <div class="add-elem">
+                <div class="icon-width">
+                <label> <i class="fa fa-money" aria-hidden="true"></i></label>
+
+                </div>
+                <input type="text" placeholder="Amount" value={{this.amount}} {{on 'input' this.setAmount}}>
+            </div>
+            <div class="add-elem">
+                <div class="icon-width">
+                <label> <i class="fa fa-sort" aria-hidden="true"></i></label>
+
+                </div>
+                <PowerSelect class="power-plan" @selected={{this.category}} @options={{this.categories}} @onChange={{fn (mut this.category)}} as |cycle|>
+                     {{cycle}}
+                </PowerSelect>
+            </div>
+            <div class="add-elem">
+                <div class="icon-width">
+                <label> <i class="fa fa-cc-visa" aria-hidden="true"></i></label>
+                </div>
+                <PowerSelect class="power-plan" @selected={{this.pay}} @options={{this.paymentMethods}} @onChange={{fn (mut this.pay)}} as |cycle|>
+                     {{cycle}}
+                </PowerSelect>
+            </div>
+            <div class="add-form-btns">
+                <button class="add-button" type="submit">ADD</button>
+                <button class="cancel" type="submit">CANCEL</button>
+            </div>
+        </form>
     </div>
-    <div class="form-elem">
-        <PowerSelect class="power" @selected={{this.selectedPlan}} @options={{this.subPlans}} @onChange={{this.changePlan}} @labelText="Subscription Plan" as |name|>
-            {{name}}
-        </PowerSelect>
+    <div class="existing-container">
+        <h3>Existing Subscription</h3>
+        <div class="box">
+            {{#each this.subData as |item|}}
+                <div class="inner-box">
+                    <div class="box-img">
+                        {{#if item.imgPath}}
+                            <img src={{item.imgPath}} alt="">
+                        {{else}}
+                            <img src='assets/images/star.png' alt="">
+                        {{/if}}
+                        <h3>{{item.subName}}</h3>
+                    </div>
+                    <h5>{{item.plan}}</h5>
+                </div>
+            {{/each}}
+        </div>
     </div>
-    <div class="form-elem">
-        <PowerSelect class="power" @selected={{this.selectedPlan}} @options={{this.subPlans}} @onChange={{this.changePlan}} @labelText="Subscription Plan" as |name|>
-            {{name}}
-        </PowerSelect>
-    </div>
-    <div class="form-elem">
-        <label>Amount:</label>
-        <input type="text">
-    </div>
-    <div class="form-elem">
-        <label>Category:</label>
-        <input type="text">
-    </div>
-    <div class="form-elem">
-        <label>Payment Method:</label>
-        <input type="text">
-    </div>
-</form>
 </div>

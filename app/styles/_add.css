@@ -1,47 +1,144 @@
-.add-container{
+.add-overall{
     position: absolute;
     margin-top: 30px;
-    margin-left: 400px;
+    margin-left: 300px;
+    display: flex;
+    gap: 200px;
 }
 
 .add-header{
     display: flex;
     align-items: center;
-    gap: 60px;
-    font-size: 14px;
-    font-weight: 600;
-    margin: 20px 0;
-    color: rgb(0 99 148);
+    gap: 40px;
+}
+
+.add-header i{
+    cursor: pointer;
 }
 
 .add-form{
+    margin: 50px;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    margin: 20px;
-    margin-top: 40px;
 }
 
-.form-elem{
+.add-elem{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.add-elem input,.power-plan{
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    width: 250px;
+    padding: 10px;
+    outline: none;
+}
+.power-plan{
+    border: 1px solid #ccc;
+    height: 10px;
+    color: gray;
+    border-radius: 20px;
+    width: 250px;
+    padding: 10px;
+    outline: none;
+}
+
+.add-elem label{
+    color: gray;
+    font-size: 22px;
+}
+
+.icon-width{
+    width: 30px;
+}
+
+.add-form-btns{
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.add-form-btns .add-button{
+    border: none;
+    padding: 10px 40px;
+    background-color: #00769D;
+    color: white;
+    font-weight: 600;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.add-form-btns .cancel{
+    border: none;
+    padding: 10px 40px;
+    border-radius: 20px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.add-form-btns .cancel:hover{
+    background-color: aliceblue;
+}
+
+.existing-container h3{
+    text-align: center;
+    font-weight: 600;
+}
+
+.existing-container .box{
+    height: 500px;
+    width: 400px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    margin-top: 30px;
+    padding: 20px;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
 }
 
-.form-elem label{
-    color: rgb(7 85 108);
+.existing-container .box .inner-box{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 6px 6px 15px rgb(0 0 0 / 10%);
+}
+
+.box-img{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.box-img h3{
+    text-transform: uppercase;
+}
+
+ .box-img img{
+    width: 70px;
+}
+
+.inner-box h5{
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 0 20px;
     font-size: 16px;
+    color: gray;
     font-weight: 500;
 }
 
-.form-elem input{
-    height: 20px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    outline: none;
-    padding: 5px;
-}
-
-.form-elem input:focus{
-    border: 2px solid #ccc;
+.ember-power-select-trigger{
+    border: 1px solid #ccc !important;
+    border-radius: 20px !important;
+    width: 265px !important;
+    padding: 3px !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
 }
