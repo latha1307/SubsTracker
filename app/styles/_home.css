@@ -3,6 +3,11 @@
     margin-top: 70px;
     margin-left: 300px;
     display: flex;
+    flex-direction: column;
+}
+
+.home-top{
+    display: flex;
     gap: 100px;
 }
 

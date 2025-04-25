@@ -9,4 +9,5 @@ export default class Router extends EmberRouter {
 Router.map(function () {
   this.route('addSubscription');
   this.route('home');
+  this.route('subscription');
 });

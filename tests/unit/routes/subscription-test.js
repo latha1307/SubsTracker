@@ -1,0 +1,11 @@
+import { module, test } from 'qunit';
+import { setupTest } from 'task1/tests/helpers';
+
+module('Unit | Route | subscription', function (hooks) {
+  setupTest(hooks);
+
+  test('it exists', function (assert) {
+    let route = this.owner.lookup('route:subscription');
+    assert.ok(route);
+  });
+});

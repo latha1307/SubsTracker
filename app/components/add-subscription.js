@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { subscriptionData } from '../data/subscriptionData';
-import Subscription from '../models/subscription';
+import SubscriptionModel from '../models/subscription';
 import { service } from '@ember/service';
 
 export default class AddSubscription extends Component {
@@ -36,13 +36,14 @@ export default class AddSubscription extends Component {
     }
 
     @action loadData() {
-        this.subData = (subscriptionData ?? []).map((e) => new Subscription(e))
+        this.subData = (subscriptionData ?? []).map((e) => new SubscriptionModel(e))
     }
 
     @action
     async addSubscription(e) {
         e.preventDefault()
             subscriptionData.push({
+                id: subscriptionData.length + 1,
                 subName: this.subName,
                 plan: this.plan,
                 billCycle: this.billCycle,

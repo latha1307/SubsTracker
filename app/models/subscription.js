@@ -1,7 +1,7 @@
 
 import { tracked } from '@glimmer/tracking';
 
-export default class Subscription {
+export default class SubscriptionModel {
     @tracked subName;
     @tracked id;
     @tracked plan;

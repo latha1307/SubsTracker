@@ -46,7 +46,7 @@ export const subscriptionData = [
     },
     {
         id: 4,
-        subName: 'Amazom Prime',
+        subName: 'Amazon Prime',
         plan: 'Prime',
         availablePlan: [ 'Prime', 'Annual Prime Lite', 'Standard', 'Premium'],
         periods: ['Monthly', 'Yearly'],
