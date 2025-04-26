@@ -4,7 +4,7 @@
         <h4>Tracking</h4>
         <div>
             {{#each this.navItems1 as |item|}}
-                <LinkTo @route={{item.path}} class="nav1-items" style="text-decoration: none;color:black">
+                <LinkTo @route={{item.path}} class="nav1-items" style="text-decoration: none;color:black" >
                     <img src={{item.img}} alt="" class="navImg">
                     <p class="label1">{{item.label}}</p>
                 </LinkTo>

@@ -60,7 +60,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 100%;
-    box-shadow: 1px 1px 15px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 15px 0 rgb(0 0 0 / 10%);
 }
 
 .view-img-circle img{
@@ -72,11 +72,11 @@ width: 120px;
     padding: 0 30px;
     border: none;
     border-radius: 20px;
-    background-color: rgb(172, 247, 172);
-    color: rgb(0, 83, 0);
+    background-color: rgb(172 247 172);
+    color: rgb(0 83 0);
     font-weight: 600;
     font-size: 16px;
-    box-shadow: 1px 1px 15px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 1px 1px 15px 0 rgb(0 0 0 / 5%);
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -91,7 +91,7 @@ width: 120px;
 }
 
 .view-img-container span:hover{
-    background-color: rgb(87, 174, 87); 
+    background-color: rgb(87 174 87); 
 }
 
 .view-edit-header{
@@ -105,6 +105,7 @@ width: 120px;
     display: flex;
     gap: 20px;
 }
+
 .view-toggle {
     position: relative;
     display: inline-block;
@@ -121,16 +122,12 @@ width: 120px;
   .view-slider {
     position: absolute;
     cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background-color: #ccc;
-    -webkit-transition: .4s;
     transition: .4s;
   }
   
-  .view-slider:before {
+  .view-slider::before {
     position: absolute;
     content: "";
     height: 20px;
@@ -138,7 +135,6 @@ width: 120px;
     left: 4px;
     bottom: 4px;
     background-color: white;
-    -webkit-transition: .4s;
     transition: .4s;
   }
   
@@ -150,9 +146,7 @@ width: 120px;
     box-shadow: 0 0 1px #2196F3;
   }
   
-  input:checked + .view-slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
+  input:checked + .view-slider::before {
     transform: translateX(26px);
   }
   
@@ -160,7 +154,7 @@ width: 120px;
     border-radius: 34px;
   }
   
-  .view-slider.round:before {
+  .view-slider.round::before {
     border-radius: 50%;
   }
 
@@ -216,7 +210,7 @@ width: 120px;
   }
 
   .view-edit-elem label{
-    color: rgb(93, 93, 93);
+    color: rgb(93 93 93);
   }
 
   .view-edit-elem input{
@@ -228,7 +222,7 @@ width: 120px;
   }
 
   .view-edit-elem input:disabled{
-    background-color: #eeeeee;
+    background-color: #eee;
   }
 
   .form-all-elem{
@@ -261,12 +255,11 @@ width: 120px;
   }
 
   .view-form-btns  .view-form-cancel:hover{
-    background-color: rgb(206, 206, 206);
+    background-color: rgb(206 206 206);
   }
 
   .view-power-plan{
     padding: 6px !important;
-    border: none !important;
     width: 210px !important;
     border: 2px solid #ccc !important;
     border-radius: 10px !important;

@@ -75,7 +75,8 @@ export default class Home extends Component {
     }
 
     @action
-    addToWallet(){
+    addToWallet(e){
+        e.preventDefault()
         this.currentAmount += this.addMoney;
         this.addMoney = 0;
     }
