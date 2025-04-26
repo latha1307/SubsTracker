@@ -33,7 +33,7 @@
     <div class="form-all-elem">
             <div class="view-edit-elem">
                 <label> Subscription Name</label>
-                <input type="text" value={{this.subName}} disabled={{this.isEdit}}>
+                <input type="text" value={{this.subName}} disabled={{this.isEdit}} {{on 'input' this.setSubName}}> 
             </div>
             <div class="view-edit-elem">
                 <label>Billing Cycle </label>
@@ -55,7 +55,7 @@
             </div>
             <div class="view-edit-elem">
                 <label>Amount</label>
-                <input type="text" value={{this.amount}} disabled={{this.isEdit}}>
+                <input type="text" value={{this.amount}} disabled={{this.isEdit}} {{on 'input' this.setAmount}}>
             </div>
             <div class="view-edit-elem">
                 <label>Current status</label>

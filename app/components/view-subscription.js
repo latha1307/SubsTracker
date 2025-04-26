@@ -38,6 +38,14 @@ export default class ViewSubscription extends Component {
         console.log(this.viewSub)
     }
 
+    setSubName= (e) => {
+        this.subName = e.target.value; 
+    }
+
+    setAmount = (e) => {
+        this.amount = e.target.value;
+    }
+
     @action
     toggleEditing() {
         this.isEdit = !this.isEdit;
@@ -54,6 +62,9 @@ export default class ViewSubscription extends Component {
         this.viewSub.pay = this.pay;
         this.viewSub.status = this.status;
 
+        setTimeout(()=> {
+            this.back();
+        },2000)
     }
 
     @action
