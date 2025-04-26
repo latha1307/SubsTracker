@@ -1,0 +1,73 @@
+<div class="view-subs-container">
+    <div class="view-sub-header">
+        <div class="view-sub-head-text">
+            <i class="fa fa-chevron-left" aria-hidden="true" {{on 'click' this.back}}></i>
+            <img src={{this.imgPath}} alt="">
+            <h1>{{this.subName}} Subscription</h1>
+        </div>
+        <button>Add New Payment</button>
+    </div>
+    <div class="view-img-container">
+        <div class="view-img-circle">
+            <img src={{this.imgPath}} alt="">
+        </div>
+        <span>
+            <input type="file" title="" />
+            Change logo
+        </span>
+    </div>
+    <div class="view-edit-header">
+        <div class="view-edit">
+            <h5>Enable Editing</h5>
+            <label class="view-toggle">
+                <input type="checkbox" {{on 'change' this.toggleEditing}}>
+                <span class="view-slider round"></span>
+            </label>
+        </div>
+        <div class="view-edit-btns">
+            <button class="view-edit-history"><i class="fa fa-history" aria-hidden="true"></i>View History</button>
+            <button class="view-edit-delete"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</button>
+        </div>
+    </div>
+    <form class="view-edit-form-container" {{on 'submit' this.editSubmit}}>
+    <div class="form-all-elem">
+            <div class="view-edit-elem">
+                <label> Subscription Name</label>
+                <input type="text" value={{this.subName}} disabled={{this.isEdit}}>
+            </div>
+            <div class="view-edit-elem">
+                <label>Billing Cycle </label>
+                <PowerSelect class="view-power-plan" @disabled={{this.isEdit}} @selected={{this.billCycle}} @options={{this.cycle}} @onChange={{fn (mut this.billCycle)}} as |cycle|>
+                     {{cycle}}
+                </PowerSelect>
+            </div>
+            <div class="view-edit-elem">
+                <label>Category</label>
+                <PowerSelect class="view-power-plan" @disabled={{this.isEdit}} @selected={{this.category}} @options={{this.categories}} @onChange={{fn (mut this.category)}} as |cat|>
+                     {{cat}}
+                </PowerSelect>
+            </div>
+            <div class="view-edit-elem">
+                <label>Subscription Plan</label>
+                <PowerSelect class="view-power-plan" @selected={{this.plan}} @disabled={{this.isEdit}} @options={{this.plans}} @onChange={{fn (mut this.plan)}} as |subPlan|>
+                 {{subPlan}}
+                </PowerSelect>
+            </div>
+            <div class="view-edit-elem">
+                <label>Amount</label>
+                <input type="text" value={{this.amount}} disabled={{this.isEdit}}>
+            </div>
+            <div class="view-edit-elem">
+                <label>Current status</label>
+                <PowerSelect class="view-power-plan" @selected={{this.status}} @disabled={{this.isEdit}} @options={{this.statusOptions}} @onChange={{fn (mut this.status)}} as |stat|>
+                     {{stat}}
+                </PowerSelect>
+            </div>
+    </div>
+    <div class="view-form-btns">
+        <button class="view-form-save" type="submit">Save</button>
+        <button class="view-form-cancel">Cancel</button>
+    </div>
+    </form>
+
+</div>

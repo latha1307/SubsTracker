@@ -57,7 +57,7 @@
                             </p>
                         <p style="color: gray;">Plan: <span style="color: black;">{{item.plan}}</span></p>
                     </div>
-                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                    <LinkTo @route="view-subscription" style="text-decoration: none;color:black;" @model={{item.id}}><i class="fa fa-long-arrow-right" aria-hidden="true"></i></LinkTo>
                 </div>
             </div>
         {{/each}}

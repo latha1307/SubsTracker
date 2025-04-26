@@ -38,7 +38,7 @@
     width: 300px;
     padding: 10px;
     border-radius: 10px;
-    box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 15px rgb(0 0 0 / 10%);
 }
 
 .inside-1, .inside-2{
@@ -51,11 +51,11 @@
 }
 
 .inside-1 span{
-    color: rgb(70, 70, 70);
+    color: rgb(70 70 70);
 }
 
 .inside-1 {
-    color: rgb(216, 1, 1);
+    color: rgb(216 1 1);
 }
 
 .inside-1 h3, .inside-2 h4{
@@ -65,7 +65,7 @@
 }
 
 .inside-2 span{
-    color: rgb(216, 1, 1);
+    color: rgb(216 1 1);
     font-size: 25px;
     font-weight: 600;
 }
@@ -100,7 +100,7 @@
 
 .sub-card{
     background-color: white;
-    box-shadow: 1px 1px 30px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 30px 0 rgb(0 0 0 / 10%);
     gap: 10px;
     width: 300px;
     border-radius: 10px;
@@ -125,4 +125,10 @@
 
 .card-content i{
     font-size: 30px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.card-content i:hover{
+    transform: scaleX(1.4);
 }

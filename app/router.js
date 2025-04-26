@@ -10,4 +10,5 @@ Router.map(function () {
   this.route('addSubscription');
   this.route('home');
   this.route('subscription');
+  this.route('view-subscription', { path: 'subscriptions/:id'});
 });
