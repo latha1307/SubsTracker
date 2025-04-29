@@ -16,6 +16,11 @@
             Change logo
         </span>
     </div>
+    {{#if this.currentSubscription}}
+        <div class="current-subscription">
+            <button {{on 'click' this.cancelSub}}><i class="fa fa-ban" aria-hidden="true"></i>Cancel Current Subscription</button>
+        </div>
+    {{/if}}
     <div class="view-edit-header">
         <div class="view-edit">
             <h5>Enable Editing</h5>

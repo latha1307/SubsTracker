@@ -6,6 +6,7 @@ import { subscriptionData } from '../data/subscriptionData';
 
 export default class ViewSubscription extends Component {
     @service router;
+    @service wallet;
 
     @tracked subName = '';
     @tracked subId = 0;
@@ -18,6 +19,7 @@ export default class ViewSubscription extends Component {
     @tracked status = '';
     @tracked viewSub = null;
     @tracked isEdit = true;
+    @tracked currentSubscription = false;
 
     cycle=[ 'Monthly', '3-Months', 'Yearly'];
     plans=[ 'Basic', 'Individual', 'Family', 'Pro', 'Pro +', 'Premium', 'Standard', 'Professional', 'Starter']
@@ -38,7 +40,16 @@ export default class ViewSubscription extends Component {
             this.imgPath = this.viewSub.imgPath;
             this.status = this.viewSub.status
         }
+        this.checkCurrentSub();
         console.log(this.viewSub)
+    }
+
+    checkCurrentSub() {
+        subscriptionData[this.subId].paymentHistory.forEach(payData => {
+            if (this.formatDate(payData.billDate) == this.getCurrentMonthYear()){
+                this.currentSubscription = true;
+            }
+        })
     }
 
     setSubName= (e) => {
@@ -79,6 +90,42 @@ export default class ViewSubscription extends Component {
                 subscriptionData.splice(index, 1);
                 this.back();
             }
+        }
+    }
+
+    getCurrentMonthYear() {
+        const date = new Date();
+        const month = String(date.getMonth() + 1).padStart(2, '0'); 
+        const year = date.getFullYear();
+        return `${month}-${year}`;
+      }
+
+    @action
+    formatDate(inputDate) {
+        const dateParts = inputDate.split('-');
+        if (dateParts.length !== 3) {
+          return "Invalid date format";
+        }
+      
+        const day = parseInt(dateParts[0], 10);
+        const month = parseInt(dateParts[1], 10);
+        const year = parseInt(dateParts[2], 10);
+      
+        if (isNaN(day) || isNaN(month) || isNaN(year) || day < 1 || day > 31 || month < 1 || month > 12 || year < 1000 || year > 9999) {
+          return "Invalid date values";
+        }
+        const formattedMonth = month < 10 ? `0${month}` : `${month}`;
+        return `${formattedMonth}-${year}`;
+      }
+
+    @action
+    cancelSub() {
+        if(confirm("Are you sure want to cancel current subscription") == true){
+            subscriptionData[this.subId].paymentHistory.forEach(payData => {
+                if (this.formatDate(payData.billDate) == this.getCurrentMonthYear()){
+                    this.wallet.creditAmount(Number(payData.amnt))
+                }
+            });
         }
     }
 

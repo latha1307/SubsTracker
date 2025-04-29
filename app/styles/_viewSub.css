@@ -265,3 +265,32 @@ width: 120px;
     border-radius: 10px !important;
     cursor:  pointer !important;
   }
+
+
+  .current-subscription{
+    margin: 20px 0;
+  }
+
+  .current-subscription button{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    background-color: #ffabab;
+    color: #a80101;
+    font-weight: 600;
+    cursor: pointer;
+    gap: 5px;
+    outline: none;
+  }
+
+  .current-subscription button:hover{
+    background-color: #e68888;
+  }
+
+  .current-subscription button i{
+    margin-top: 3px;
+  }
