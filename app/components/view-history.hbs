@@ -1,11 +1,11 @@
 <div class="view-subs-container">
     <div class="view-sub-header">
         <div class="view-sub-head-text">
-            <i class="fa fa-chevron-left" aria-hidden="true" {{on 'click' this.back}}></i>
+            <LinkTo @route="view-subscription" style="text-decoration: none; color:black" @model={{this.subId}}><i class="fa fa-chevron-left" aria-hidden="true" ></i></LinkTo>
             <img src={{this.imgPath}} alt="">
             <h1>{{this.subName}} Subscription</h1>
         </div>
-        <button type="button">Add New Payment</button>
+        <LinkTo @route="add-new-payment" @model={{this.subId}}><button type="button">Add New Payment</button></LinkTo>
     </div>
     <div class="history-sub">
         <h2><i class="fa fa-history" aria-hidden="true"></i> Subscription History</h2>

@@ -5,6 +5,8 @@ import config from 'task1/config/environment';
 import 'ember-power-select/styles';
 import { importSync, isDevelopingApp, macroCondition } from '@embroider/macros';
 import 'ember-power-select/styles';
+import { registerDateLibrary } from 'ember-power-calendar';
+import DateUtils from 'ember-power-calendar-luxon';
 
 if (macroCondition(isDevelopingApp())) {
   importSync('./deprecation-workflow');
@@ -17,3 +19,4 @@ export default class App extends Application {
 }
 
 loadInitializers(App, config.modulePrefix);
+registerDateLibrary(DateUtils);

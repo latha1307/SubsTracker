@@ -9,12 +9,12 @@
     min-width: 400px;
     border-radius: 5px 5px 0 0;
     overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 20px rgb(0 0 0 / 15%);
 
 }
 
 .history-table-container thead tr{
-    background-color: rgb(183, 183, 183);
+    background-color: rgb(183 183 183);
 }
 
 .history-table-body{

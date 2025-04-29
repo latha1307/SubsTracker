@@ -8,6 +8,7 @@ export default class ViewSubscription extends Component {
     @service router;
 
     @tracked subName = '';
+    @tracked subId = 0;
     @tracked imgPath = '';
     @tracked plan = '';
     @tracked billCycle = '';
@@ -28,6 +29,7 @@ export default class ViewSubscription extends Component {
         this.viewSub = this.args.viewSub;
         if (this.viewSub) {
             this.subName= this.viewSub.subName;
+            this.subId= this.viewSub.id;
             this.plan = this.viewSub.plan;
             this.amount = this.viewSub.amount;
             this.category = this.viewSub.category;
@@ -75,9 +77,9 @@ export default class ViewSubscription extends Component {
         if (index > -1){
             if (confirm('Are you sure want to delete the subscription') == true){
                 subscriptionData.splice(index, 1);
+                this.back();
             }
         }
-        this.back();
     }
 
     @action

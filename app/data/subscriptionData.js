@@ -22,7 +22,7 @@ export const subscriptionData = [
             { billDate: '21-06-2024', subPlan: 'Family', amnt: '299', payMethod: 'Wallet'},
             { billDate: '25-07-2024', subPlan: 'Individual', amnt: '199', payMethod: 'Net Banking'},
             { billDate: '25-08-2024', subPlan: 'Family', amnt: '299', payMethod: 'UPI'},
-            { billDate: '28-09-2024', subPlan: 'Individual', amnt: '199', payMethod: 'Wallet'},
+            { billDate: '28-04-2025', subPlan: 'Individual', amnt: '199', payMethod: 'Wallet'},
         ]
     },
     {
@@ -36,7 +36,7 @@ export const subscriptionData = [
         description: "Spotify is a digital music, podcast, and video service that gives you access to millions of songs and other content from creators all over the world.",
         status: 'Active',
         imgPath: '/assets/images/spotify.png',
-        billCycle: 'Monthly',
+        billCycle: '2-Month',
         amount: '149',
         Pay: 'UPI',
         paymentHistory: [
@@ -48,7 +48,7 @@ export const subscriptionData = [
             { billDate: '20-06-2024', subPlan: 'Family', amnt: '299', payMethod: 'Wallet'},
             { billDate: '25-07-2024', subPlan: 'Individual', amnt: '199', payMethod: 'Net Banking'},
             { billDate: '25-08-2024', subPlan: 'Family', amnt: '299', payMethod: 'UPI'},
-            { billDate: '25-09-2024', subPlan: 'Individual', amnt: '199', payMethod: 'Wallet'},
+            { billDate: '25-04-2025', subPlan: 'Individual', amnt: '149', payMethod: 'Wallet'},
         ]
     },
     {
@@ -164,10 +164,10 @@ export const subscriptionData = [
         amount: ['59', '119', '179', '1500'],
         category: 'Music',
         description: "Apple Music is a subscription-based streaming service that allows users to access a vast library of songs, albums, and curated playlists, along with features like personalized recommendations, lossless audio, and Spatial Audio with Dolby Atmos. It's available on various Apple devices and also accessible on Android and Windows platforms. ",
-        status: 'Active',
+        status: 'Inactive',
         imgPath: '/assets/images/music.png',
         billCycle: 'Monthly',
-        amount: '149',
+        amount: '119',
         Pay: 'UPI',
         paymentHistory: [
             { billDate: '25-01-2024', subPlan: 'Individual', amnt: '199', payMethod: 'UPI'},
@@ -242,7 +242,7 @@ export const subscriptionData = [
         amount: ['770'],
         category: 'Education',
         description: "Grammarly is an AI-powered writing assistant that helps users improve their grammar, spelling, punctuation, and writing style. It offers features like real-time feedback, suggestions for tone and word choice, and even helps generate ideas and drafts. Grammarly is available on various platforms and apps, including web browsers, desktop applications, and integrations within popular software like Microsoft Office. ",
-        status: 'Active',
+        status: 'Inactive',
         imgPath: '/assets/images/grammerly.png',
         billCycle: 'Monthly',
         amount: '149',
@@ -320,7 +320,7 @@ export const subscriptionData = [
         amount: ['149', '199', '499', '649'],
         category: 'Education',
         description: "Coursera is a global online learning platform offering courses, Specializations, Professional Certificates, and degrees from leading universities and companies. It provides access to diverse subjects and learning formats, aiming to empower anyone to transform their lives through learning. Coursera's mission is to make quality education accessible to all, believing learning is a fundamental right. ",
-        status: 'Active',
+        status: 'Inactive',
         imgPath: '/assets/images/coursera.png',
         billCycle: 'Monthly',
         amount: '149',
@@ -413,6 +413,7 @@ export const subscriptionData = [
             { billDate: '25-07-2024', subPlan: 'Individual', amnt: '199', payMethod: 'Net Banking'},
             { billDate: '25-08-2024', subPlan: 'Family', amnt: '299', payMethod: 'UPI'},
             { billDate: '25-09-2024', subPlan: 'Individual', amnt: '199', payMethod: 'Wallet'},
+            { billDate: '22-04-2025', subPlan: 'Individual', amnt: '199', payMethod: 'Wallet'},
         ]
     },
     {
@@ -424,7 +425,7 @@ export const subscriptionData = [
         amount: ['149', '199', '499', '649'],
         category: 'Entertainment',
         description: "Netflix is a subscription-based streaming service that allows our members to watch TV shows and movies on an internet-connected device.",
-        status: 'Active',
+        status: 'Inactive',
         imgPath: '/assets/images/xbox.png',
         billCycle: 'Monthly',
         amount: '149',

@@ -12,6 +12,8 @@ export default class SubscriptionModel {
     @tracked description;
     @tracked status;
     @tracked imgPath;
+    @tracked Pay;
+    @tracked paymentHistory;
 
     constructor(data){
         Object.assign(this, data)

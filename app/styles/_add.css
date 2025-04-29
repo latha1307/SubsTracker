@@ -143,3 +143,10 @@
     font-size: 14px !important;
     font-weight: 400 !important;
 }
+
+
+.add-pay-head{
+    margin: 60px 0;
+    font-size: 20px;
+    font-weight: 600;
+}

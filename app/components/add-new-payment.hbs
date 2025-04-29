@@ -1,0 +1,56 @@
+<div class="view-subs-container">
+    <div class="view-sub-head-text">
+        <LinkTo @route="view-history" @model={{this.subId}} style="text-decoration: none; color:black"><i class="fa fa-chevron-left" aria-hidden="true"></i></LinkTo>
+        <img src={{this.imgPath}} alt="">
+        <h1>{{this.subName}} Subscription</h1>
+    </div>
+    <h3 class="add-pay-head">New Payment</h3>
+
+    <form class="view-edit-form-container" {{on 'submit' this.addNewPay}}>
+    <div class="form-all-elem">
+            <div class="view-edit-elem">
+                <label> Subscription Name</label>
+                <input type="text" value={{this.subName}} disabled> 
+            </div>
+            <div class="view-edit-elem">
+                <label>Category</label>
+                <PowerSelect class="view-power-plan" @selected={{this.category}} @disabled={{true}} @onChange={{fn (mut this.category)}} as |cat|>
+                     {{cat}}
+                </PowerSelect>
+            </div>
+            <div class="view-edit-elem">
+                <label style="margin-left: -3px;">Billing Date</label>
+                <input type="date" style="width: 200px; margin-left:-1px;" {{on 'input' this.setBillDate}}>
+
+            </div>
+            <div class="view-edit-elem">
+                <label>Subscription Plan</label>
+                <PowerSelect class="view-power-plan" @selected={{this.plan}}  @options={{this.plans}} @onChange={{fn (mut this.plan)}} as |subPlan|>
+                 {{subPlan}}
+                </PowerSelect>
+            </div>
+            <div class="view-edit-elem">
+                <label>Billing Cycle </label>
+                <PowerSelect class="view-power-plan" @selected={{this.billCycle}} @options={{this.cycle}} @onChange={{fn (mut this.billCycle)}} as |cycle|>
+                     {{cycle}}
+                </PowerSelect>
+            </div>
+
+
+            <div class="view-edit-elem">
+                <label>Amount</label>
+                <input type="text" value={{this.amount}} {{on 'input' this.setAmount}}>
+            </div>
+            <div class="view-edit-elem">
+                <label>Payment Method</label>
+                <PowerSelect class="view-power-plan" @selected={{this.pay}} @options={{this.paymentMethods}} @onChange={{fn (mut this.pay)}} as |stat|>
+                     {{stat}}
+                </PowerSelect>
+            </div>
+    </div>
+    <div class="view-form-btns">
+        <button class="view-form-save" type="submit">Pay</button>
+        <button class="view-form-cancel" type="submit">Cancel</button>
+    </div>
+    </form>
+</div>

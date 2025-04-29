@@ -2,8 +2,9 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { service } from '@ember/service';
-
+import { subscriptionData } from '../data/subscriptionData';
 export default class ViewHistory extends Component {
+    @tracked subId = 0;
     @tracked subName = '';
     @tracked imgPath = '';
     @tracked historyData = [];
@@ -21,15 +22,12 @@ export default class ViewHistory extends Component {
         this.viewHistory = this.args.viewHistory;
         if(this.viewHistory){
             this.subName = this.viewHistory.subName;
+            this.subId = this.viewHistory.id;
             this.imgPath = this.viewHistory.imgPath;
-            this.historyData = this.viewHistory.paymentHistory;
+            this.historyData = subscriptionData[this.subId].paymentHistory;
         }
-        console.log(this.subName)
-        console.log(this.historyData)
+        console.log(this.viewHistory)
+        console.log(subscriptionData)
     }
 
-    @action
-    back() {
-        this.router.transitionTo('subscription')
-    }
 }

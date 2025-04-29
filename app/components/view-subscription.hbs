@@ -5,7 +5,7 @@
             <img src={{this.imgPath}} alt="">
             <h1>{{this.subName}} Subscription</h1>
         </div>
-        <button type="button">Add New Payment</button>
+        <LinkTo @route="add-new-payment" @model={{this.subId}}><button type="button">Add New Payment</button></LinkTo>
     </div>
     <div class="view-img-container">
         <div class="view-img-circle">
@@ -25,7 +25,7 @@
             </label>
         </div>
         <div class="view-edit-btns">
-            <LinkTo @route="view-history" style="text-decoration: none;" @model={{this.viewSub}}><button class="view-edit-history" type="button"><i class="fa fa-history" aria-hidden="true"></i>View History</button></LinkTo>
+            <LinkTo @route="view-history" style="text-decoration: none;" @model={{this.viewSub}}><button class="view-edit-history" type="button"><i class="fa fa-history" aria-hidden="true"></i>View Payment History</button></LinkTo>
             <button class="view-edit-delete" type="button" {{on 'click' this.deleteSubb}}><i class="fa fa-trash-o" aria-hidden="true" ></i>Delete</button>
         </div>
     </div>

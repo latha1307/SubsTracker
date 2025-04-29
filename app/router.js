@@ -12,4 +12,5 @@ Router.map(function () {
   this.route('subscription');
   this.route('view-subscription', { path: 'subscriptions/:id'});
   this.route('view-history', { path: 'view/history/:id'});
+  this.route('add-new-payment', { path: 'add/new/payment/:id'});
 });

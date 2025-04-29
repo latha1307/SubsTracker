@@ -1,4 +1,4 @@
-export let recentTransData = [
+export const recentTransData = [
     {
         id: 1,
         name: 'Amazon',
