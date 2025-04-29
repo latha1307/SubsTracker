@@ -1,13 +1,21 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import { service } from '@ember/service';
 
 export default class Home extends Component {
 
-    @tracked currentAmount = 2000;
+    @service wallet;
+    @tracked currentAmount = 0;
     @tracked addMoney = 0;
 
+
     moneyBtns = [10, 100, 200, 500, 1000];
+
+    constructor() {
+        super(...arguments);
+        this.currentAmount = this.wallet.amount;
+    }
 
     @action
     onChangeMoney(amt){
@@ -23,6 +31,7 @@ export default class Home extends Component {
     addToWallet(e){
         e.preventDefault()
         this.currentAmount += this.addMoney;
+        this.wallet.creditAmount(this.addMoney);
         this.addMoney = 0;
     }
 

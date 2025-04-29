@@ -7,6 +7,7 @@ import SubscriptionModel from '../models/subscription';
 
 export default class AddNewPayment extends Component {
     @service router;
+    @service wallet;
 
     @tracked subName = '';
     @tracked subData = [];
@@ -68,6 +69,9 @@ export default class AddNewPayment extends Component {
     @action
     async addNewPay(e) {
         e.preventDefault();
+        if (this.pay == 'Wallet') {
+            this.deductFromWallet();
+        }
         await this.subData[this.subId].paymentHistory.push({
             billDate: this.formatDate(this.billDate),
             subPlan: this.plan,
@@ -76,6 +80,11 @@ export default class AddNewPayment extends Component {
         })
         console.log('updated history', this.subData)
         this.router.transitionTo('view-history', this.subId)
+    }
+
+    @action
+    deductFromWallet() {
+        this.wallet.debitAmount(this.amount)
     }
 
 }
