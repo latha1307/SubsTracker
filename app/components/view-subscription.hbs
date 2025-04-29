@@ -26,7 +26,7 @@
         </div>
         <div class="view-edit-btns">
             <LinkTo @route="view-history" style="text-decoration: none;" @model={{this.viewSub}}><button class="view-edit-history" type="button"><i class="fa fa-history" aria-hidden="true"></i>View History</button></LinkTo>
-            <button class="view-edit-delete" type="button"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</button>
+            <button class="view-edit-delete" type="button" {{on 'click' this.deleteSubb}}><i class="fa fa-trash-o" aria-hidden="true" ></i>Delete</button>
         </div>
     </div>
     <form class="view-edit-form-container" {{on 'submit' this.editSubmit}}>

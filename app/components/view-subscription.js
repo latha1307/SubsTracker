@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { service } from '@ember/service';
+import { subscriptionData } from '../data/subscriptionData';
 
 export default class ViewSubscription extends Component {
     @service router;
@@ -65,6 +66,18 @@ export default class ViewSubscription extends Component {
         setTimeout(()=> {
             this.back();
         },2000)
+    }
+
+    @action
+    deleteSubb(){
+        const index = subscriptionData.indexOf(this.viewSub);
+        
+        if (index > -1){
+            if (confirm('Are you sure want to delete the subscription') == true){
+                subscriptionData.splice(index, 1);
+            }
+        }
+        this.back();
     }
 
     @action

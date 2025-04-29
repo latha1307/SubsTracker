@@ -15,14 +15,14 @@ export const subscriptionData = [
         Pay: 'UPI',
         paymentHistory: [
             { billDate: '25-01-2024', subPlan: 'Individual', amnt: '199', payMethod: 'UPI'},
-            { billDate: '25-02-2024', subPlan: 'Family', amnt: '299', payMethod: 'Card'},
-            { billDate: '25-03-2024', subPlan: 'Student', amnt: '89', payMethod: 'UPI'},
-            { billDate: '25-04-2024', subPlan: 'Individual', amnt: '199', payMethod: 'Wallet'},
-            { billDate: '25-05-2024', subPlan: 'Individual', amnt: '199', payMethod: 'UPI'},
-            { billDate: '25-06-2024', subPlan: 'Family', amnt: '299', payMethod: 'Wallet'},
+            { billDate: '26-02-2024', subPlan: 'Family', amnt: '299', payMethod: 'Card'},
+            { billDate: '27-03-2024', subPlan: 'Student', amnt: '89', payMethod: 'UPI'},
+            { billDate: '28-04-2024', subPlan: 'Individual', amnt: '199', payMethod: 'Wallet'},
+            { billDate: '20-05-2024', subPlan: 'Individual', amnt: '199', payMethod: 'UPI'},
+            { billDate: '21-06-2024', subPlan: 'Family', amnt: '299', payMethod: 'Wallet'},
             { billDate: '25-07-2024', subPlan: 'Individual', amnt: '199', payMethod: 'Net Banking'},
             { billDate: '25-08-2024', subPlan: 'Family', amnt: '299', payMethod: 'UPI'},
-            { billDate: '25-09-2024', subPlan: 'Individual', amnt: '199', payMethod: 'Wallet'},
+            { billDate: '28-09-2024', subPlan: 'Individual', amnt: '199', payMethod: 'Wallet'},
         ]
     },
     {
@@ -42,10 +42,10 @@ export const subscriptionData = [
         paymentHistory: [
             { billDate: '25-01-2024', subPlan: 'Individual', amnt: '199', payMethod: 'UPI'},
             { billDate: '25-02-2024', subPlan: 'Family', amnt: '299', payMethod: 'Card'},
-            { billDate: '25-03-2024', subPlan: 'Student', amnt: '89', payMethod: 'UPI'},
+            { billDate: '23-03-2024', subPlan: 'Student', amnt: '89', payMethod: 'UPI'},
             { billDate: '25-04-2024', subPlan: 'Individual', amnt: '199', payMethod: 'Wallet'},
             { billDate: '25-05-2024', subPlan: 'Individual', amnt: '199', payMethod: 'UPI'},
-            { billDate: '25-06-2024', subPlan: 'Family', amnt: '299', payMethod: 'Wallet'},
+            { billDate: '20-06-2024', subPlan: 'Family', amnt: '299', payMethod: 'Wallet'},
             { billDate: '25-07-2024', subPlan: 'Individual', amnt: '199', payMethod: 'Net Banking'},
             { billDate: '25-08-2024', subPlan: 'Family', amnt: '299', payMethod: 'UPI'},
             { billDate: '25-09-2024', subPlan: 'Individual', amnt: '199', payMethod: 'Wallet'},

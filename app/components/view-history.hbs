@@ -7,4 +7,30 @@
         </div>
         <button type="button">Add New Payment</button>
     </div>
+    <div class="history-sub">
+        <h2><i class="fa fa-history" aria-hidden="true"></i> Subscription History</h2>
+    </div>
+    <div>
+        <table class="history-table-container">
+            <thead>
+            <tr>
+                <th>S.No</th>
+                {{#each this.columns as |header|}}
+                    <th>{{header.head}}</th>
+                {{/each}}
+            </tr>
+            </thead>
+            <tbody class="history-table-body">
+                {{#each this.historyData as |history index|}}
+                    <tr>
+                        <td>{{inc index}}</td>
+                        <td>{{history.billDate}}</td>
+                        <td>{{history.subPlan}}</td>
+                        <td>{{history.amnt}}</td>
+                        <td>{{history.payMethod}}</td>
+                    </tr>
+                {{/each}}
+            </tbody>
+            </table>
+    </div>
 </div>
