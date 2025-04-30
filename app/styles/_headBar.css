@@ -1,8 +1,7 @@
 .headbar-container{
     z-index: 40px;
-    position: fixed;
     margin-left: 300px;
-    margin-top: 20px;
+    margin-top: 10px;
     display: flex;
     justify-content: space-between;
     width: 75vw;

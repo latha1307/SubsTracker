@@ -27,8 +27,22 @@
 
     </div>
     </div>
-    <h2 class="wallet-his-head">Wallet History</h2>
+    <div class="wallet-head-container">
+        <h2 class="wallet-his-head">Wallet History</h2>
+        <div class="wallet-nav-container">
+            <div class="wallet-nav-selected" {{on 'click' (fn this.currentFilter 'debit')}}>
+                <h4>Debit</h4>
+            </div>
+            <div class="wallet-nav-selected" {{on 'click' (fn this.currentFilter 'credit')}}>
+                <h4>Credit</h4>
+            </div>
+            <div class="wallet-nav-selected" {{on 'click' (fn this.currentFilter 'refund')}}>
+                <h4>Refund</h4>
+            </div>
+        </div>
+    </div>
     {{#each this.walletData as |item|}}
         <WalletHistoryCard @walletItem={{item}} />
+        
     {{/each}}
 </div>

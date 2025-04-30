@@ -10,6 +10,7 @@ export default class Home extends Component {
     @tracked currentAmount = 0;
     @tracked addMoney = 0;
     @tracked walletData = [];
+    @tracked currentFilterStatus = 'all';
 
 
     moneyBtns = [10, 100, 200, 500, 1000];
@@ -22,7 +23,16 @@ export default class Home extends Component {
 
     @action
     loadWallet() {
-        this.walletData = walletHistory.slice().reverse();
+        if(this.currentFilterStatus == 'all'){
+            this.walletData = walletHistory.slice().reverse();       
+        } else if(this.currentFilterStatus == 'credit') {
+            this.walletData = walletHistory.slice().reverse().filter(val => val.method == 'credit');
+        } else if(this.currentFilterStatus == 'debit') {
+            this.walletData = walletHistory.slice().reverse().filter(val => val.method == 'debit');
+        } else {
+            this.walletData = walletHistory.slice().reverse().filter(val => val.method == 'refund');
+        }
+        console.log(this.walletData)
     }
 
     @action
@@ -73,5 +83,11 @@ export default class Home extends Component {
         })
         this.loadWallet()
         console.log(walletHistory)
+    }
+
+    @action
+    currentFilter(val) {
+        this.currentFilterStatus = val;
+        this.loadWallet()
     }
 }

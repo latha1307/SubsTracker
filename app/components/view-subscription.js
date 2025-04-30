@@ -3,6 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { service } from '@ember/service';
 import { subscriptionData } from '../data/subscriptionData';
+import { walletHistory } from '../data/walletHistory';
 
 export default class ViewSubscription extends Component {
     @service router;
@@ -124,6 +125,7 @@ export default class ViewSubscription extends Component {
             subscriptionData[this.subId].paymentHistory.forEach(payData => {
                 if (this.formatDate(payData.billDate) == this.getCurrentMonthYear()){
                     this.wallet.creditAmount(Number(payData.amnt))
+                    this.initWallet(Number(payData.amnt))
                 }
             });
         }
@@ -133,4 +135,27 @@ export default class ViewSubscription extends Component {
     back() {
         this.router.transitionTo('subscription')
     }
+
+    getCurrentDate() {
+        const today = new Date();
+        const day = String(today.getDate()).padStart(2, '0');
+        const month = String(today.getMonth() + 1).padStart(2, '0'); 
+        const year = today.getFullYear();
+        return `${day}-${month}-${year}`;
+      }
+
+        @action
+        initWallet(amnt) {
+            walletHistory.push({
+                id: walletHistory.length + 1,
+                date: this.getCurrentDate(),
+                name: this.subName,
+                imgPath: this.imgPath,
+                statement: 'Received',
+                sent: false,
+                method: 'refund',
+                amount: amnt
+            })
+            console.log(walletHistory)
+        }
 }

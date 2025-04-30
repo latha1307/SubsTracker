@@ -142,3 +142,29 @@
 .wallet-history-amount p {
     color: grey;
 }
+
+.wallet-head-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wallet-nav-container{
+    display: flex;
+    background-color: white;
+    border: 1px solid #9d9d9d;
+
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.wallet-nav-container h4{
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.wallet-nav-selected:hover{
+    background: rgb(213, 231, 253);
+    border-radius: 10px;
+}
