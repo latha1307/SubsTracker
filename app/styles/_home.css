@@ -107,7 +107,7 @@
     align-items: center;
     width: 100%;
     background-color: white;
-    box-shadow: 1px 1px 15px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 15px 0 rgb(0 0 0 / 10%);
     border-radius: 10px;
     margin: 20px 0;
 }
@@ -153,7 +153,6 @@
     display: flex;
     background-color: white;
     border: 1px solid #9d9d9d;
-
     border-radius: 10px;
     cursor: pointer;
 }
@@ -165,6 +164,6 @@
 }
 
 .wallet-nav-selected:hover{
-    background: rgb(213, 231, 253);
+    background: rgb(213 231 253);
     border-radius: 10px;
 }

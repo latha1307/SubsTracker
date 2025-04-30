@@ -21,8 +21,9 @@ export default class ViewSubscription extends Component {
     @tracked viewSub = null;
     @tracked isEdit = true;
     @tracked currentSubscription = false;
+    @tracked durationCycle = 0;
 
-    cycle=[ 'Monthly', '3-Months', 'Yearly'];
+    cycle=[ 'Seconds', 'Minutes', 'Days', 'Monthly', '3-Months', 'Yearly'];
     plans=[ 'Basic', 'Individual', 'Family', 'Pro', 'Pro +', 'Premium', 'Standard', 'Professional', 'Starter']
     categories = ['Entertainment', 'Medical', 'Social Media', 'Education']
     statusOptions = ['Active', 'Inactive']
@@ -61,6 +62,11 @@ export default class ViewSubscription extends Component {
         this.amount = e.target.value;
     }
 
+    setDuration = (e) => {
+        this.durationCycle = e.target.value;
+    }
+
+
     @action
     toggleEditing() {
         this.isEdit = !this.isEdit;
@@ -76,6 +82,37 @@ export default class ViewSubscription extends Component {
         this.viewSub.billCycle = this.billCycle;
         this.viewSub.pay = this.pay;
         this.viewSub.status = this.status;
+
+        if(this.billCycle == 'Seconds'){
+            const time = this.durationCycle * 1000;
+            this.wallet.deductAmountMinutes(this.amount, time, this.viewSub);
+        }
+
+        if(this.billCycle == 'Minutes'){
+            const time = this.durationCycle * 60000;
+            this.wallet.deductAmountMinutes(this.amount, time, this.viewSub);
+        }
+
+        if(this.billCycle == 'Days'){
+            const time = this.durationCycle * 24 * 60 * 60 * 1000;
+            this.wallet.deductAmountMinutes(this.amount, time, this.viewSub);
+        }
+
+        if(this.billCycle == 'Monthly'){
+            const time = 30.44 * 24 * 60 * 60 * 1000;
+            this.wallet.deductAmountMinutes(this.amount, time, this.viewSub);
+        }
+
+        
+        if(this.billCycle == '3-Months'){
+            const time = 3*30.44 * 24 * 60 * 60 * 1000;
+            this.wallet.deductAmountMinutes(this.amount, time, this.viewSub);
+        }
+
+        if(this.billCycle == 'Yearly'){
+            const time = 365.25 * 24 * 60 * 60 * 1000;
+            this.wallet.deductAmountMinutes(this.amount, time, this.viewSub);
+        }
 
         setTimeout(()=> {
             this.back();

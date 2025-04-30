@@ -8,7 +8,7 @@ import { service } from '@ember/service';
 export default class AddSubscription extends Component {
     @service router;
     @tracked subData = []
-    cycle=[ 'Monthly', '3-Months', 'Yearly'];
+    cycle=[ 'Seconds', 'Minutes', 'Monthly', '3-Months', 'Yearly'];
     plans=[ 'Basic', 'Individual', 'Family', 'Pro', 'Pro +', 'Premium', 'Standard', 'Professional', 'Starter']
     categories = ['Entertainment', 'Medical', 'Social Media', 'Education']
     paymentMethods = ['Card', 'UPI', 'Net-Banking']
@@ -54,6 +54,7 @@ export default class AddSubscription extends Component {
         this.resetForm()
         console.log(subscriptionData)
         this.loadData()
+
     }
 
     resetForm() {

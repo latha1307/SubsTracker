@@ -46,6 +46,10 @@
                      {{cycle}}
                 </PowerSelect>
             </div>
+                <div class="view-edit-elem">
+                <label>Duration </label>
+                <input type="number" disabled={{this.isEdit}} {{on 'input' this.setDuration}} >
+            </div>
             <div class="view-edit-elem">
                 <label>Category</label>
                 <PowerSelect class="view-power-plan" @disabled={{this.isEdit}} @selected={{this.category}} @options={{this.categories}} @onChange={{fn (mut this.category)}} as |cat|>
