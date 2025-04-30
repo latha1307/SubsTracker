@@ -6,10 +6,28 @@ import { subscriptionData } from '../data/subscriptionData';
 
 export default class WalletService extends Service {
     @tracked amount = 2000;
+    @tracked autopay;
     
+    constructor() {
+        super(...arguments);
+        if(this.amount < 0){
+            alert('Insufficient Balance')
+        }
+    }
     
     debitAmount(amnt) {
+        if(this.amount < 0){
+            alert('Insufficient balance. Please add money to wallet')
+            clearInterval(this.autopay)
+            return false
+        }
+        if(this.amount-amnt < 0){
+            alert('Insufficient balance. Please add money to wallet')
+            clearInterval(this.autopay)
+            return false
+        }
         this.amount -= amnt;
+        return true
     }
 
     creditAmount(amnt) {
@@ -17,9 +35,13 @@ export default class WalletService extends Service {
     }
 
     deductAmountMinutes(amnt, time, data) {
-        setInterval(() => {
-            this.amount -= amnt
+        this.autopay = setInterval(() => {
+            this.debitAmount(amnt)
             this.initWallet(data, amnt)
+            if(this.amount < 0){
+                alert('Insufficient balance. Please add money to wallet')
+                return
+            }
         }, time)
     }
 
@@ -39,7 +61,7 @@ export default class WalletService extends Service {
             name: data.subName,
             imgPath: data.imgPath,
             statement: 'Paid',
-            sent: false,
+            sent: true,
             method: 'debit',
             amount: amnt
         })

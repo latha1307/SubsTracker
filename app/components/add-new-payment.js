@@ -23,6 +23,7 @@ export default class AddNewPayment extends Component {
     @tracked status = '';
     @tracked addPay = null; 
     @tracked billDate = new Date();
+    @tracked amountdebited = false;
 
     
     cycle=[ 'Monthly', '3-Months', 'Yearly'];
@@ -73,20 +74,24 @@ export default class AddNewPayment extends Component {
         if (this.pay == 'Wallet') {
             this.deductFromWallet();
         }
+        if (this.amountdebited) {
         await this.subData[this.subId].paymentHistory.push({
             billDate: this.formatDate(this.billDate),
             subPlan: this.plan,
             amnt: this.amount,
             payMethod: this.pay
         })
+    }   
         console.log('updated history', this.subData)
         this.router.transitionTo('view-history', this.subId)
     }
 
     @action
     deductFromWallet() {
-        this.wallet.debitAmount(this.amount)
-        this.initWallet(this.amount)
+        this.amountdebited = this.wallet.debitAmount(this.amount)
+        if (this.amountdebited) {
+            this.initWallet(this.amount)
+        }
     }
 
     getCurrentDate() {

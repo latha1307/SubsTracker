@@ -30,6 +30,9 @@
     <div class="wallet-head-container">
         <h2 class="wallet-his-head">Wallet History</h2>
         <div class="wallet-nav-container">
+            <div class="wallet-nav-selected" {{on 'click' (fn this.currentFilter 'all')}}>
+                <h4>All</h4>
+            </div>
             <div class="wallet-nav-selected" {{on 'click' (fn this.currentFilter 'debit')}}>
                 <h4>Debit</h4>
             </div>

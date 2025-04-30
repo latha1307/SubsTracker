@@ -11,7 +11,7 @@ export default class AddSubscription extends Component {
     cycle=[ 'Seconds', 'Minutes', 'Monthly', '3-Months', 'Yearly'];
     plans=[ 'Basic', 'Individual', 'Family', 'Pro', 'Pro +', 'Premium', 'Standard', 'Professional', 'Starter']
     categories = ['Entertainment', 'Medical', 'Social Media', 'Education']
-    paymentMethods = ['Card', 'UPI', 'Net-Banking']
+    paymentMethods = ['Card', 'UPI', 'Net-Banking', 'Wallet']
     @tracked subName = '';
     @tracked plan = 'Select Plan';
     @tracked billCycle = 'Select Period';

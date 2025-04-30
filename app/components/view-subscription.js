@@ -52,6 +52,9 @@ export default class ViewSubscription extends Component {
                 this.currentSubscription = true;
             }
         })
+        if (walletHistory.find(data => (data.name == this.subName) && (data.method == 'refund'))){
+            this.currentSubscription = false;
+        }
     }
 
     setSubName= (e) => {
