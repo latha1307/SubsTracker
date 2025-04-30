@@ -1,0 +1,21 @@
+<div class="wallet-history-card">
+    <h4>{{@walletItem.date}}</h4>
+    <div class="wallet-history-img-container">
+        <img src={{@walletItem.imgPath}} alt="">
+        <h3>{{@walletItem.name}}</h3>
+    </div>
+    {{#if @walletItem.sent}}
+        <h5 style="color: rgb(202, 25, 25);">{{@walletItem.method}}</h5>
+    {{else}}
+        <h5 style="color: green;">{{@walletItem.method}}</h5>
+    {{/if}}
+    <div class="wallet-history-amount">
+        {{#if @walletItem.sent}}
+            <h4 style="color: rgb(202, 25, 25);"> - $ {{@walletItem.amount}}</h4>
+            <p>{{@walletItem.statement}}</p>
+        {{else}}
+            <h4 style="color: green;"> + $ {{@walletItem.amount}}</h4>
+            <p>{{@walletItem.statement}}</p>
+        {{/if}}
+    </div>
+</div>

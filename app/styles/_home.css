@@ -95,3 +95,50 @@
 .add-money-btn:hover{
     background-color: #435a6d;
 }
+
+.wallet-his-head{
+    margin-top: 30px;
+}
+
+.wallet-history-card{
+    height: 80px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    background-color: white;
+    box-shadow: 1px 1px 15px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.wallet-history-img-container img{
+    width: 70px;
+}
+
+.wallet-history-img-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    gap: 20px;
+    text-transform: uppercase;
+}
+
+.wallet-history-card h4{
+    color: gray;
+    font-weight: 600;
+}
+
+.wallet-history-card h5{
+    font-size: 18px;
+    text-transform: capitalize;
+}
+
+.wallet-history-amount{
+    text-align: right;
+}
+
+.wallet-history-amount p {
+    color: grey;
+}

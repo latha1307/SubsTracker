@@ -27,4 +27,8 @@
 
     </div>
     </div>
+    <h2 class="wallet-his-head">Wallet History</h2>
+    {{#each this.walletData as |item|}}
+        <WalletHistoryCard @walletItem={{item}} />
+    {{/each}}
 </div>

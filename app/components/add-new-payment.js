@@ -4,6 +4,7 @@ import { action } from '@ember/object';
 import { subscriptionData } from '../data/subscriptionData';
 import { service } from '@ember/service';
 import SubscriptionModel from '../models/subscription';
+import { walletHistory } from '../data/walletHistory';
 
 export default class AddNewPayment extends Component {
     @service router;
@@ -85,6 +86,30 @@ export default class AddNewPayment extends Component {
     @action
     deductFromWallet() {
         this.wallet.debitAmount(this.amount)
+        this.initWallet(this.amount)
+    }
+
+    getCurrentDate() {
+        const today = new Date();
+        const day = String(today.getDate()).padStart(2, '0');
+        const month = String(today.getMonth() + 1).padStart(2, '0'); 
+        const year = today.getFullYear();
+        return `${day}-${month}-${year}`;
+      }
+
+    @action
+    initWallet(amnt) {
+        walletHistory.push({
+            id: walletHistory.length + 1,
+            date: this.getCurrentDate(),
+            name: this.subName,
+            imgPath: this.imgPath,
+            statement: 'Paid',
+            sent: true,
+            method: 'debit',
+            amount: amnt
+        })
+        console.log(walletHistory)
     }
 
 }
