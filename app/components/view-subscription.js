@@ -21,7 +21,7 @@ export default class ViewSubscription extends Component {
     @tracked viewSub = null;
     @tracked isEdit = true;
     @tracked currentSubscription = false;
-    @tracked durationCycle = 0;
+    @tracked durationCycle;
 
     cycle=[ 'Seconds', 'Minutes', 'Days', 'Monthly', '3-Months', 'Yearly'];
     plans=[ 'Basic', 'Individual', 'Family', 'Pro', 'Pro +', 'Premium', 'Standard', 'Professional', 'Starter']
@@ -85,41 +85,75 @@ export default class ViewSubscription extends Component {
         this.viewSub.billCycle = this.billCycle;
         this.viewSub.pay = this.pay;
         this.viewSub.status = this.status;
-
-        if(this.billCycle == 'Seconds'){
-            const time = this.durationCycle * 1000;
-            this.wallet.deductAmountMinutes(this.amount, time, this.viewSub);
+        if(this.status == 'Active'){
+            this.viewSub.isActive = true;
+        } else {
+            this.viewSub.isActive = false;
+        }
+        console.log(this.durationCycle)
+        if(this.billCycle == 'Seconds' && this.durationCycle){
+            if(this.status == 'Active'){
+                const time = this.durationCycle * 1000;
+                this.wallet.deductAmountMinutes(this.amount, time, this.viewSub);
+            } else {
+                alert('Status is Inactive. Payment could not be deducted');
+                this.durationCycle = null;
+                console.log('printed')
+            }
         }
 
-        if(this.billCycle == 'Minutes'){
+        if(this.billCycle == 'Minutes' && this.durationCycle){
+            if(this.status == 'Active' ){
             const time = this.durationCycle * 60000;
             this.wallet.deductAmountMinutes(this.amount, time, this.viewSub);
+        } else {
+            alert('Status is Inactive. Payment could not be deducted')
+            this.durationCycle = 0;
         }
+    }
 
-        if(this.billCycle == 'Days'){
+        if(this.billCycle == 'Days' && this.durationCycle){
+            if(this.status == 'Active' ){
             const time = this.durationCycle * 24 * 60 * 60 * 1000;
             this.wallet.deductAmountMinutes(this.amount, time, this.viewSub);
+            } else {
+                alert('Status is Inactive. Payment could not be deducted')
+                this.durationCycle = null;
+            }
         }
 
-        if(this.billCycle == 'Monthly'){
+        if(this.billCycle == 'Monthly' && this.durationCycle){
+            if(this.status == 'Active'){
             const time = 30.44 * 24 * 60 * 60 * 1000;
             this.wallet.deductAmountMinutes(this.amount, time, this.viewSub);
+            } else {
+                alert('Status is Inactive. Payment could not be deducted')
+                this.durationCycle = null;
+            }
         }
 
         
-        if(this.billCycle == '3-Months'){
+        if(this.billCycle == '3-Months' && this.durationCycle){
+            if(this.status == 'Active'){
             const time = 3*30.44 * 24 * 60 * 60 * 1000;
             this.wallet.deductAmountMinutes(this.amount, time, this.viewSub);
+            } else {
+                alert('Status is Inactive. Payment could not be deducted')
+                this.durationCycle = null;
+            }
         }
 
-        if(this.billCycle == 'Yearly'){
+        if(this.billCycle == 'Yearly' && this.durationCycle){
+            if(this.status == 'Active'){
             const time = 365.25 * 24 * 60 * 60 * 1000;
             this.wallet.deductAmountMinutes(this.amount, time, this.viewSub);
+            } else {
+                alert('Status is Inactive. Payment could not be deducted')
+                this.durationCycle = null;
+            }
         }
 
-        setTimeout(()=> {
-            this.back();
-        },2000)
+        this.back();
     }
 
     @action
