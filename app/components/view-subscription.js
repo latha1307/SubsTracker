@@ -47,7 +47,7 @@ export default class ViewSubscription extends Component {
     }
 
     checkCurrentSub() {
-        subscriptionData[this.subId].paymentHistory.forEach(payData => {
+        subscriptionData[this.subId]?.paymentHistory.forEach(payData => {
             if (this.formatDate(payData.billDate) == this.getCurrentMonthYear()){
                 this.currentSubscription = true;
             }

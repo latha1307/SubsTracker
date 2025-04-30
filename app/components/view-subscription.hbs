@@ -2,14 +2,23 @@
     <div class="view-sub-header">
         <div class="view-sub-head-text">
             <i class="fa fa-chevron-left" aria-hidden="true" {{on 'click' this.back}}></i>
-            <img src={{this.imgPath}} alt="">
+            {{#if this.imgPath}}
+                <img src={{this.imgPath}} alt="">
+            {{else}}
+                <img src="/assets/images/star.png">
+            {{/if}}
+            
             <h1>{{this.subName}} Subscription</h1>
         </div>
         <LinkTo @route="add-new-payment" @model={{this.subId}}><button type="button">Add New Payment</button></LinkTo>
     </div>
     <div class="view-img-container">
         <div class="view-img-circle">
-            <img src={{this.imgPath}} alt="">
+            {{#if this.imgPath}}
+                <img src={{this.imgPath}} alt="">
+            {{else}}
+                <img src="/assets/images/star.png">
+            {{/if}}
         </div>
         <span>
             <input type="file" title="" />

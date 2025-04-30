@@ -1,8 +1,11 @@
 import Model from '@ember-data/model';
 import { tracked } from '@glimmer/tracking';
 
-export default class WalletModel extends Model {
-    @tracked walletAmount;
+export default class PaymentHistoryModel extends Model {
+    @tracked billDate;
+    @tracked subPlan;
+    @tracked amnt;
+    @tracked payMethod;
 
     constructor(data){
         Object.assign(this, data)

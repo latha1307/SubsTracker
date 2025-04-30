@@ -4,10 +4,12 @@ import { action } from '@ember/object';
 import { subscriptionData } from '../data/subscriptionData';
 import SubscriptionModel from '../models/subscription';
 import { service } from '@ember/service';
+import PaymentHistoryModel from '../models/payment-history';
 
 export default class AddSubscription extends Component {
     @service router;
-    @tracked subData = []
+    @tracked subData = [];
+    @tracked payHistory = [];
     cycle=[ 'Seconds', 'Minutes', 'Monthly', '3-Months', 'Yearly'];
     plans=[ 'Basic', 'Individual', 'Family', 'Pro', 'Pro +', 'Premium', 'Standard', 'Professional', 'Starter']
     categories = ['Entertainment', 'Medical', 'Social Media', 'Education']
@@ -49,7 +51,10 @@ export default class AddSubscription extends Component {
                 billCycle: this.billCycle,
                 amount: this.amount,
                 category: this.category,
-                Pay: this.pay
+                Pay: this.pay,
+                status: 'Active',
+                isActive: true,
+                paymentHistory: ([]).map((e) => new PaymentHistoryModel(e))
             })
         this.resetForm()
         console.log(subscriptionData)
