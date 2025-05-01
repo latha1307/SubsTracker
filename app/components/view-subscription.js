@@ -40,7 +40,8 @@ export default class ViewSubscription extends Component {
             this.billCycle = this.viewSub.billCycle;
             this.pay = this.viewSub.pay;
             this.imgPath = this.viewSub.imgPath;
-            this.status = this.viewSub.status
+            this.status = this.viewSub.status;
+            this.durationCycle = this.viewSub.duration;
         }
         this.checkCurrentSub();
         console.log(this.viewSub)
@@ -85,6 +86,7 @@ export default class ViewSubscription extends Component {
         this.viewSub.billCycle = this.billCycle;
         this.viewSub.pay = this.pay;
         this.viewSub.status = this.status;
+        this.viewSub.duration = this.durationCycle;
         if(this.status == 'Active'){
             this.viewSub.isActive = true;
         } else {

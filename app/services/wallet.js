@@ -3,19 +3,38 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { walletHistory } from '../data/walletHistory';
 import { subscriptionData } from '../data/subscriptionData';
+import { A } from '@ember/array';
 
 export default class WalletService extends Service {
     @tracked amount = 2000;
     @tracked autopay;
+    @tracked currentFilterStatus = 'all';
+    @tracked walletData = A([]);
+    @tracked onHold = false;
+    @tracked pendingTrans = A([]);
     
     constructor() {
         super(...arguments);
         if(this.amount < 0){
             alert('Insufficient Balance')
         }
+        this.loadData();
     }
-    
-    debitAmount(amnt) {
+
+    loadData() {
+        if(this.currentFilterStatus == 'all'){
+            this.walletData = A(walletHistory.slice().reverse());
+        } else if(this.currentFilterStatus == 'credit') {
+            this.walletData = A(walletHistory.slice().reverse().filter(val => val.method == 'credit'));
+        } else if(this.currentFilterStatus == 'debit') {
+            this.walletData = A(walletHistory.slice().reverse().filter(val => val.method == 'debit'));
+        } else {
+            this.walletData = A(walletHistory.slice().reverse().filter(val => val.method == 'refund'));
+        }
+    }
+
+
+    debitAmount(amnt) {  
         if(this.amount < 0){
             alert('Insufficient balance. Please add money to wallet')
             clearInterval(this.autopay)
@@ -26,24 +45,55 @@ export default class WalletService extends Service {
             clearInterval(this.autopay)
             return false
         }
+        
         this.amount -= amnt;
         return true
     }
 
     creditAmount(amnt) {
         this.amount += amnt;
+        if(this.onHold) {
+            this.pendingTrans.forEach(data => {
+                this.deductAmountMinutes(data.amount, data.duration, data.array)
+            })
+        }
     }
 
     deductAmountMinutes(amnt, time, data) {
+        clearInterval(this.autopay)
         this.autopay = setInterval(() => {
-            this.debitAmount(amnt)
-            this.initWallet(data, amnt)
-            if(this.amount < 0){
-                alert('Insufficient balance. Please add money to wallet')
+            if((this.amount-amnt) < 0){
+                alert('Insufficient balance. Please add money to wallet');
+                this.onHold = true;
+                console.log('worked')
+                this.pendingTrans.pushObject({
+                    amount: amnt,
+                    duration: time,
+                    array: data
+                })
+                clearInterval(this.autopay)
                 return
             }
+            this.amount -= amnt
+            this.initWallet(data, amnt) 
+    
         }, time)
     }
+
+    getCurrentTime() {
+        const now = new Date();
+        let hours = now.getHours();
+        const minutes = now.getMinutes();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+      
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+      
+        const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+      
+        return hours + ':' + formattedMinutes + ' ' + ampm;
+      }
+      
 
     getCurrentDate() {
         const today = new Date();
@@ -62,6 +112,7 @@ export default class WalletService extends Service {
             imgPath: data.imgPath,
             statement: 'Paid',
             sent: true,
+            time: this.getCurrentTime(),
             method: 'debit',
             amount: amnt
         })
@@ -71,7 +122,7 @@ export default class WalletService extends Service {
             amnt: amnt,
             payMethod: 'Wallet'
         })
-        console.log(walletHistory)
+        this.loadData();
     }
 
 }

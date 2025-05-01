@@ -9,7 +9,6 @@ export default class Home extends Component {
     @service wallet;
     @tracked currentAmount = 0;
     @tracked addMoney = 0;
-    @tracked walletData = [];
     @tracked currentFilterStatus = 'all';
 
 
@@ -18,22 +17,8 @@ export default class Home extends Component {
     constructor() {
         super(...arguments);
         this.currentAmount = this.wallet.amount;
-        this.loadWallet();
     }
 
-    @action
-    loadWallet() {
-        if(this.currentFilterStatus == 'all'){
-            this.walletData = walletHistory.slice().reverse();       
-        } else if(this.currentFilterStatus == 'credit') {
-            this.walletData = walletHistory.slice().reverse().filter(val => val.method == 'credit');
-        } else if(this.currentFilterStatus == 'debit') {
-            this.walletData = walletHistory.slice().reverse().filter(val => val.method == 'debit');
-        } else {
-            this.walletData = walletHistory.slice().reverse().filter(val => val.method == 'refund');
-        }
-        console.log(this.walletData)
-    }
 
     @action
     onChangeMoney(amt){
@@ -48,6 +33,10 @@ export default class Home extends Component {
     @action
     addToWallet(e){
         e.preventDefault()
+        if(this.addMoney == 0) {
+            alert('Please enter amount');
+            return
+        }
         this.currentAmount += this.addMoney;
         this.wallet.creditAmount(this.addMoney);
         this.initWallet(this.addMoney);
@@ -59,6 +48,21 @@ export default class Home extends Component {
     setAddMoney(e) {
         console.log(e.value)
     }
+
+    getCurrentTime() {
+        const now = new Date();
+        let hours = now.getHours();
+        const minutes = now.getMinutes();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+      
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+      
+        const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+      
+        return hours + ':' + formattedMinutes + ' ' + ampm;
+      }
+      
 
     getCurrentDate() {
         const today = new Date();
@@ -78,16 +82,16 @@ export default class Home extends Component {
             imgPath: '/assets/images/courthouse.png',
             statement: 'Received',
             sent: false,
+            time: this.getCurrentTime(),
             method: 'credit',
             amount: amnt
         })
-        this.loadWallet()
-        console.log(walletHistory)
+        this.wallet.loadData();
     }
 
     @action
     currentFilter(val) {
-        this.currentFilterStatus = val;
-        this.loadWallet()
+        this.wallet.currentFilterStatus = val;
+        this.wallet.loadData()
     }
 }

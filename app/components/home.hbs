@@ -8,14 +8,14 @@
             <h2>ALAN WILLIAM</h2>
         <div>
             <p>Balance Amount</p>
-            <h3>$ {{ mut this.currentAmount}}</h3>
+            <h3>$ {{ mut this.wallet.amount}}</h3>
         </div>
         </div>
     </div>
     </div>
     <div class="add-money-container">
         <p>
-        $<input type="number" placeholder="1000" value={{this.addMoney}} {{on 'input' this.addAmount}}>
+        $<input type="number" placeholder="1000" value={{this.addMoney}} min={{0}} {{on 'input' this.addAmount}} onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))">
         </p>
         
         <div class="add-amount">
@@ -44,7 +44,7 @@
             </div>
         </div>
     </div>
-    {{#each this.walletData as |item|}}
+    {{#each this.wallet.walletData as |item|}}
         <WalletHistoryCard @walletItem={{item}} />
         
     {{/each}}

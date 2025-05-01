@@ -13,6 +13,7 @@ export const subscriptionData = [
         imgPath: '/assets/images/youtube.png',
         billCycle: 'Monthly',
         amount: '149',
+        duration: 0,
         Pay: 'UPI',
         paymentHistory: [
             { billDate: '25-01-2024', subPlan: 'Individual', amnt: '199', payMethod: 'UPI'},
@@ -40,6 +41,7 @@ export const subscriptionData = [
         imgPath: '/assets/images/spotify.png',
         billCycle: '2-Month',
         amount: '149',
+        duration: 0,
         Pay: 'UPI',
         paymentHistory: [
             { billDate: '25-01-2024', subPlan: 'Individual', amnt: '199', payMethod: 'UPI'},
@@ -67,6 +69,7 @@ export const subscriptionData = [
         imgPath: '/assets/images/netflix.png',
         billCycle: 'Monthly',
         amount: '149',
+        duration: 0,
         Pay: 'UPI',
         paymentHistory: [
             { billDate: '25-01-2024', subPlan: 'Individual', amnt: '199', payMethod: 'UPI'},
@@ -94,6 +97,7 @@ export const subscriptionData = [
         imgPath: '/assets/images/social.png',
         billCycle: 'Monthly',
         amount: '149',
+        duration: 0,
         Pay: 'UPI',
         paymentHistory: [
             { billDate: '25-01-2024', subPlan: 'Individual', amnt: '199', payMethod: 'UPI'},
@@ -121,6 +125,7 @@ export const subscriptionData = [
         imgPath: '/assets/images/Disney+_logo.png',
         billCycle: 'Monthly',
         amount: '149',
+        duration: 0,
         Pay: 'UPI',
         paymentHistory: [
             { billDate: '25-01-2024', subPlan: 'Individual', amnt: '199', payMethod: 'UPI'},
@@ -148,6 +153,7 @@ export const subscriptionData = [
         imgPath: '/assets/images/shopify.png',
         billCycle: 'Monthly',
         amount: '149',
+        duration: 0,
         Pay: 'UPI',
         paymentHistory: [
             { billDate: '25-01-2024', subPlan: 'Individual', amnt: '199', payMethod: 'UPI'},
@@ -175,6 +181,7 @@ export const subscriptionData = [
         imgPath: '/assets/images/music.png',
         billCycle: 'Monthly',
         amount: '119',
+        duration: 0,
         Pay: 'UPI',
         paymentHistory: [
             { billDate: '25-01-2024', subPlan: 'Individual', amnt: '199', payMethod: 'UPI'},
@@ -202,6 +209,7 @@ export const subscriptionData = [
         imgPath: '/assets/images/sunnxt.jpg',
         billCycle: 'Monthly',
         amount: '149',
+        duration: 0,
         Pay: 'UPI',
         paymentHistory: [
             { billDate: '25-01-2024', subPlan: 'Individual', amnt: '199', payMethod: 'UPI'},
@@ -229,6 +237,7 @@ export const subscriptionData = [
         imgPath: '/assets/images/zoom.png',
         billCycle: 'Monthly',
         amount: '149',
+        duration: 0,
         Pay: 'UPI',
         paymentHistory: [
             { billDate: '25-01-2024', subPlan: 'Individual', amnt: '199', payMethod: 'UPI'},
@@ -256,6 +265,7 @@ export const subscriptionData = [
         imgPath: '/assets/images/grammerly.png',
         billCycle: 'Monthly',
         amount: '149',
+        duration: 0,
         Pay: 'UPI',
         paymentHistory: [
             { billDate: '25-01-2024', subPlan: 'Individual', amnt: '199', payMethod: 'UPI'},
@@ -283,6 +293,7 @@ export const subscriptionData = [
         imgPath: '/assets/images/apollo.png',
         billCycle: 'Monthly',
         amount: '149',
+        duration: 0,
         Pay: 'UPI',
         paymentHistory: [
             { billDate: '25-01-2024', subPlan: 'Individual', amnt: '199', payMethod: 'UPI'},
@@ -310,6 +321,7 @@ export const subscriptionData = [
         imgPath: '/assets/images/figma.png',
         billCycle: 'Monthly',
         amount: '149',
+        duration: 0,
         Pay: 'UPI',
         paymentHistory: [
             { billDate: '25-01-2024', subPlan: 'Individual', amnt: '199', payMethod: 'UPI'},
@@ -337,6 +349,7 @@ export const subscriptionData = [
         imgPath: '/assets/images/coursera.png',
         billCycle: 'Monthly',
         amount: '149',
+        duration: 0,
         Pay: 'UPI',
         paymentHistory: [
             { billDate: '25-01-2024', subPlan: 'Individual', amnt: '199', payMethod: 'UPI'},
@@ -363,6 +376,7 @@ export const subscriptionData = [
         isActive: true,
         imgPath: '/assets/images/swiggy.png',
         billCycle: 'Monthly',
+        duration: 0,
         amount: '149',
         Pay: 'UPI',
         paymentHistory: [
@@ -391,6 +405,7 @@ export const subscriptionData = [
         imgPath: '/assets/images/flipkart.png',
         billCycle: 'Monthly',
         amount: '149',
+        duration: 0,
         Pay: 'UPI',
         paymentHistory: [
             { billDate: '25-01-2024', subPlan: 'Individual', amnt: '199', payMethod: 'UPI'},
@@ -418,6 +433,7 @@ export const subscriptionData = [
         imgPath: '/assets/images/Microsoft_Logo.png',
         billCycle: 'Monthly',
         amount: '149',
+        duration: 0,
         Pay: 'UPI',
         paymentHistory: [
             { billDate: '25-01-2024', subPlan: 'Individual', amnt: '199', payMethod: 'UPI'},
@@ -474,6 +490,7 @@ export const subscriptionData = [
         billCycle: 'Monthly',
         amount: '149',
         Pay: 'UPI',
+        duration: 0,
         paymentHistory: [
             { billDate: '25-01-2024', subPlan: 'Individual', amnt: '199', payMethod: 'UPI'},
             { billDate: '25-02-2024', subPlan: 'Family', amnt: '299', payMethod: 'Card'},
@@ -501,6 +518,7 @@ export const subscriptionData = [
         billCycle: 'Monthly',
         amount: '149',
         Pay: 'UPI',
+        duration: 0,
         paymentHistory: [
             { billDate: '25-01-2024', subPlan: 'Individual', amnt: '199', payMethod: 'UPI'},
             { billDate: '25-02-2024', subPlan: 'Family', amnt: '299', payMethod: 'Card'},
@@ -528,6 +546,7 @@ export const subscriptionData = [
         billCycle: 'Monthly',
         amount: '149',
         Pay: 'UPI',
+        duration: 0,
         paymentHistory: [
             { billDate: '25-01-2024', subPlan: 'Individual', amnt: '199', payMethod: 'UPI'},
             { billDate: '25-02-2024', subPlan: 'Family', amnt: '299', payMethod: 'Card'},
