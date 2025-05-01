@@ -59,6 +59,10 @@ export default class WalletService extends Service {
         }
     }
 
+    checkSubscriptionExist(id) {
+        return subscriptionData.find(data => data.id == id)
+    }
+
     createInterval(callback, delay) {
         const intervalId = setInterval(callback, delay);
         this.autopay.push(intervalId);
@@ -72,21 +76,21 @@ export default class WalletService extends Service {
 
     clearIntervalById(intervalId) {
         clearInterval(intervalId);
-        const index = intervals.indexOf(intervalId);
+        const index = this.autopay.indexOf(intervalId);
         if (index > -1) {
-            intervals.splice(index, 1);
+            this.autopay.splice(index, 1);
         }
+        console.log(this.autopay)
     }
 
     deductAmountMinutes(amnt, time, data) {
+        if(time > 0) {
         const interval =  this.createInterval(() => {
-            console.log(interval)
             if((this.amount-amnt) < 0){
                 alert('Insufficient balance. Please add money to wallet');
                 console.log('runing')
                 this.onHold = true;
                 console.log('worked')
-                console.log(amnt, time, data)
                 this.pendingTrans.pushObject({
                     amount: amnt,
                     duration: time,
@@ -96,10 +100,17 @@ export default class WalletService extends Service {
                 
                 return
             }
+            if(this.checkSubscriptionExist(data.id)){
             this.amount -= amnt
             this.initWallet(data, amnt) 
+            }
     
         }, time)
+    }
+    else{
+        this.clearIntervalById(data.id)
+        console.log(data.id)
+    }
     }
 
     getCurrentTime() {
