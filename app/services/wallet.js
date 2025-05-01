@@ -7,7 +7,7 @@ import { A } from '@ember/array';
 
 export default class WalletService extends Service {
     @tracked amount = 2000;
-    @tracked autopay;
+    @tracked autopay = [];
     @tracked currentFilterStatus = 'all';
     @tracked walletData = A([]);
     @tracked onHold = false;
@@ -37,12 +37,12 @@ export default class WalletService extends Service {
     debitAmount(amnt) {  
         if(this.amount < 0){
             alert('Insufficient balance. Please add money to wallet')
-            clearInterval(this.autopay)
+            this.clearAllIntervals()
             return false
         }
         if(this.amount-amnt < 0){
             alert('Insufficient balance. Please add money to wallet')
-            clearInterval(this.autopay)
+            this.clearAllIntervals()
             return false
         }
         
@@ -59,19 +59,41 @@ export default class WalletService extends Service {
         }
     }
 
+    createInterval(callback, delay) {
+        const intervalId = setInterval(callback, delay);
+        this.autopay.push(intervalId);
+        return intervalId; 
+      }
+
+    clearAllIntervals() {
+        this.autopay.forEach(intervalId => clearInterval(intervalId));
+        this.autopay.length = 0; 
+      }
+
+    clearIntervalById(intervalId) {
+        clearInterval(intervalId);
+        const index = intervals.indexOf(intervalId);
+        if (index > -1) {
+            intervals.splice(index, 1);
+        }
+    }
+
     deductAmountMinutes(amnt, time, data) {
-        clearInterval(this.autopay)
-        this.autopay = setInterval(() => {
+        const interval =  this.createInterval(() => {
+            console.log(interval)
             if((this.amount-amnt) < 0){
                 alert('Insufficient balance. Please add money to wallet');
+                console.log('runing')
                 this.onHold = true;
                 console.log('worked')
+                console.log(amnt, time, data)
                 this.pendingTrans.pushObject({
                     amount: amnt,
                     duration: time,
                     array: data
                 })
-                clearInterval(this.autopay)
+                this.clearIntervalById(interval)
+                
                 return
             }
             this.amount -= amnt

@@ -126,7 +126,7 @@ export default class ViewSubscription extends Component {
 
         if(this.billCycle == 'Monthly' && this.durationCycle){
             if(this.status == 'Active'){
-            const time = 30.44 * 24 * 60 * 60 * 1000;
+            const time = this.durationCycle * 30.44 * 24 * 60 * 60 * 1000;
             this.wallet.deductAmountMinutes(this.amount, time, this.viewSub);
             } else {
                 alert('Status is Inactive. Payment could not be deducted')
@@ -147,7 +147,7 @@ export default class ViewSubscription extends Component {
 
         if(this.billCycle == 'Yearly' && this.durationCycle){
             if(this.status == 'Active'){
-            const time = 365.25 * 24 * 60 * 60 * 1000;
+            const time = this.durationCycle * 365.25 * 24 * 60 * 60 * 1000;
             this.wallet.deductAmountMinutes(this.amount, time, this.viewSub);
             } else {
                 alert('Status is Inactive. Payment could not be deducted')
