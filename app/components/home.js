@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { service } from '@ember/service';
+import { walletHistory } from '../data/walletHistory';
 
 export default class Home extends Component {
 
@@ -74,8 +75,8 @@ export default class Home extends Component {
 
     @action
     initWallet(amnt) {
-        this.wallet.walletData.push({
-            id: this.wallet.walletData.length + 1,
+        walletHistory.push({
+            id: walletHistory.length + 1,
             date: this.getCurrentDate(),
             name: 'Bank',
             imgPath: '/assets/images/courthouse.png',

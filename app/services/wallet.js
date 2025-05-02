@@ -3,6 +3,7 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { subscriptionData } from '../data/subscriptionData';
 import { A } from '@ember/array';
+import { walletHistory } from '../data/walletHistory'
 
 export default class WalletService extends Service {
     @tracked amount = Number(localStorage.getItem('walletAmount'));
@@ -26,15 +27,14 @@ export default class WalletService extends Service {
 
     loadData() {
         if(this.currentFilterStatus == 'all'){
-            this.walletData = A(this.walletData);
+            this.walletData = A(walletHistory);
         } else if(this.currentFilterStatus == 'credit') {
-            this.walletData = A(this.walletData.filter(val => val.method == 'credit'));
+            this.walletData = A(walletHistory.filter(val => val.method == 'credit'));
         } else if(this.currentFilterStatus == 'debit') {
-            this.walletData = A(this.walletData.filter(val => val.method == 'debit'));
+            this.walletData = A(walletHistory.filter(val => val.method == 'debit'));
         } else {
-            this.walletData = A(this.walletData.filter(val => val.method == 'refund'));
+            this.walletData = A(walletHistory.filter(val => val.method == 'refund'));
         }
-        console.log(this.walletData)
         localStorage.setItem('walletHistoryData', JSON.stringify(this.walletData))
     }
 
@@ -164,8 +164,8 @@ export default class WalletService extends Service {
 
     @action
     initWallet(data, amnt, historyNeed) {
-        this.walletData.push({
-            id: this.walletData.length + 1,
+        walletHistory.push({
+            id: walletHistory.length + 1,
             date: this.getCurrentDate(),
             name: data.subName,
             imgPath: data.imgPath,
