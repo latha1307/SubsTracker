@@ -9,7 +9,7 @@ export default class WalletService extends Service {
     @tracked autopay = [];
     @tracked workingAutopay = [];
     @tracked currentFilterStatus = 'all';
-    @tracked walletData = JSON.parse(localStorage.getItem('walletHistoryData') || []);
+    @tracked walletData = JSON.parse(localStorage.getItem('walletHistoryData')) || [];
     @tracked onHold = false;
     @tracked pendingTrans = A([]);
 
