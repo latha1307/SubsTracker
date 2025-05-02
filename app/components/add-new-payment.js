@@ -4,7 +4,6 @@ import { action } from '@ember/object';
 import { subscriptionData } from '../data/subscriptionData';
 import { service } from '@ember/service';
 import SubscriptionModel from '../models/subscription';
-import { walletHistory } from '../data/walletHistory';
 
 export default class AddNewPayment extends Component {
     @service router;

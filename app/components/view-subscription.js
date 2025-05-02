@@ -3,7 +3,6 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { service } from '@ember/service';
 import { subscriptionData } from '../data/subscriptionData';
-import { walletHistory } from '../data/walletHistory';
 
 export default class ViewSubscription extends Component {
     @service router;
@@ -52,7 +51,7 @@ export default class ViewSubscription extends Component {
                 this.currentSubscription = true;
             }
         })
-        if (walletHistory.find(data => (data.name == this.subName) && (data.method == 'refund'))){
+        if (this.wallet.walletData.find(data => (data.name == this.subName) && (data.method == 'refund'))){
             this.currentSubscription = false;
         }
     }
@@ -235,8 +234,8 @@ export default class ViewSubscription extends Component {
 
         @action
         initWallet(amnt) {
-            walletHistory.push({
-                id: walletHistory.length + 1,
+            this.wallet.walletData.push({
+                id: this.wallet.walletData.length + 1,
                 date: this.getCurrentDate(),
                 name: this.subName,
                 imgPath: this.imgPath,

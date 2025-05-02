@@ -1,18 +1,19 @@
 import Service from '@ember/service';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import { walletHistory } from '../data/walletHistory';
 import { subscriptionData } from '../data/subscriptionData';
 import { A } from '@ember/array';
 
 export default class WalletService extends Service {
-    @tracked amount = 2000;
+    @tracked amount = Number(localStorage.getItem('walletAmount'));
     @tracked autopay = [];
     @tracked workingAutopay = [];
     @tracked currentFilterStatus = 'all';
-    @tracked walletData = A([]);
+    @tracked walletData = JSON.parse(localStorage.getItem('walletHistoryData') || []);
     @tracked onHold = false;
     @tracked pendingTrans = A([]);
+
+    
     
     constructor() {
         super(...arguments);
@@ -20,18 +21,21 @@ export default class WalletService extends Service {
             alert('Insufficient Balance')
         }
         this.loadData();
+        
     }
 
     loadData() {
         if(this.currentFilterStatus == 'all'){
-            this.walletData = A(walletHistory.slice().reverse());
+            this.walletData = A(this.walletData);
         } else if(this.currentFilterStatus == 'credit') {
-            this.walletData = A(walletHistory.slice().reverse().filter(val => val.method == 'credit'));
+            this.walletData = A(this.walletData.filter(val => val.method == 'credit'));
         } else if(this.currentFilterStatus == 'debit') {
-            this.walletData = A(walletHistory.slice().reverse().filter(val => val.method == 'debit'));
+            this.walletData = A(this.walletData.filter(val => val.method == 'debit'));
         } else {
-            this.walletData = A(walletHistory.slice().reverse().filter(val => val.method == 'refund'));
+            this.walletData = A(this.walletData.filter(val => val.method == 'refund'));
         }
+        console.log(this.walletData)
+        localStorage.setItem('walletHistoryData', JSON.stringify(this.walletData))
     }
 
 
@@ -48,6 +52,7 @@ export default class WalletService extends Service {
         }
         
         this.amount -= amnt;
+        localStorage.setItem('walletAmount', this.amount);
         return true
     }
 
@@ -58,6 +63,7 @@ export default class WalletService extends Service {
                 this.deductAmountMinutes(data.amount, data.duration, data.array)
             })
         }
+        localStorage.setItem('walletAmount', this.amount);
     }
 
     checkSubscriptionExist(id) {
@@ -122,7 +128,7 @@ export default class WalletService extends Service {
                 this.amount -= amnt
                 this.initWallet(data, amnt, true) 
                 }
-            
+                localStorage.setItem('walletAmount', this.amount);
             }, time, data.id)
         
     }
@@ -158,8 +164,8 @@ export default class WalletService extends Service {
 
     @action
     initWallet(data, amnt, historyNeed) {
-        walletHistory.push({
-            id: walletHistory.length + 1,
+        this.walletData.push({
+            id: this.walletData.length + 1,
             date: this.getCurrentDate(),
             name: data.subName,
             imgPath: data.imgPath,
@@ -178,6 +184,7 @@ export default class WalletService extends Service {
             secMin: true
         })
     }
+
         this.loadData();
     }
 

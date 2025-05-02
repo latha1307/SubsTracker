@@ -61,7 +61,7 @@
             </div>
         </div>
     </div>
-    {{#each this.wallet.walletData as |item|}}
+    {{#each (reverse-array this.wallet.walletData) as |item|}}
         <WalletHistoryCard @walletItem={{item}} />
         
     {{/each}}
