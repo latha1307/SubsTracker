@@ -5,23 +5,24 @@ import { subscriptionData } from '../data/subscriptionData';
 import SubscriptionModel from '../models/subscription';
 import { service } from '@ember/service';
 import PaymentHistoryModel from '../models/payment-history';
+import { suggestData } from '../data/suggestedSub';
 
 export default class AddSubscription extends Component {
     @service router;
     @tracked subData = [];
     @tracked payHistory = [];
-    cycle=[ 'Seconds', 'Minutes', 'Monthly', '3-Months', 'Yearly'];
-    plans=[ 'Basic', 'Individual', 'Family', 'Pro', 'Pro +', 'Premium', 'Standard', 'Professional', 'Starter']
+    @tracked cycle=[ 'Seconds', 'Minutes', 'Monthly', '3-Months', 'Yearly'];
+    @tracked plans=[ 'Basic', 'Individual', 'Family', 'Pro', 'Pro +', 'Premium', 'Standard', 'Professional', 'Starter']
     categories = ['Entertainment', 'Medical', 'Social Media', 'Education']
     paymentMethods = ['Card', 'UPI', 'Net-Banking', 'Wallet']
     @tracked subName = '';
+    @tracked imgPath = '';
     @tracked plan = 'Select Plan';
     @tracked billCycle = 'Select Period';
     @tracked amount = '';
     @tracked category = 'Select Category';
     @tracked pay = 'Select Payment Method';
-
-
+    @tracked showDescription = false;
 
     constructor() {
         super(...arguments)
@@ -37,8 +38,22 @@ export default class AddSubscription extends Component {
         this.amount = e.target.value;
     }
 
+    setShowDescription = () => {
+        this.showDescription = !this.showDescription;
+        console.log(this.showDescription)
+        console.log('worked')
+    }
+
     @action loadData() {
-        this.subData = (subscriptionData ?? []).map((e) => new SubscriptionModel(e))
+        this.subData = (suggestData ?? []).map((e) => new SubscriptionModel(e))
+    }
+
+    @action feedData(item) {
+        this.subName = item.subName;
+        this.plans = item.availablePlan; 
+        this.category = item.category;
+        this.cycle = item.periods;
+        this.imgPath = item.imgPath;
     }
 
     @action
@@ -53,12 +68,15 @@ export default class AddSubscription extends Component {
                 category: this.category,
                 Pay: this.pay,
                 status: 'Active',
+                imgPath: this.imgPath,
                 isActive: true,
-                paymentHistory: ([]).map((e) => new PaymentHistoryModel(e))
+                paymentHistory: []
             })
         this.resetForm()
         console.log(subscriptionData)
         this.loadData()
+
+        this.router.transitionTo('subscription')
 
     }
 

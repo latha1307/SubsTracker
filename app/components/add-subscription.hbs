@@ -60,11 +60,11 @@
         </form>
     </div>
     <div class="existing-container">
-        <h3>Existing Subscription</h3>
+        <h3>Suggested Subscription</h3>
         <div class="box">
             {{#each this.subData as |item|}}
-                <div class="inner-box">
-                    <div class="box-img">
+                <div class="inner-box" {{on 'click' (fn this.feedData item)}}>
+                    <div class="box-img" >
                         {{#if item.imgPath}}
                             <img src={{item.imgPath}} alt="">
                         {{else}}
@@ -72,7 +72,6 @@
                         {{/if}}
                         <h3>{{item.subName}}</h3>
                     </div>
-                    <h5>{{item.plan}}</h5>
                 </div>
             {{/each}}
         </div>

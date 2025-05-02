@@ -68,7 +68,6 @@ export default class Subscription extends Component {
     @action
     addSavedAmount(input) {
         this.amountSaved += Number(input);
-        console.log(input)
     }
       
 

@@ -44,12 +44,11 @@ export default class ViewSubscription extends Component {
             this.durationCycle = this.viewSub.duration;
         }
         this.checkCurrentSub();
-        console.log(this.viewSub)
     }
 
     checkCurrentSub() {
-        subscriptionData[this.subId]?.paymentHistory.forEach(payData => {
-            if (this.formatDate(payData.billDate) == this.getCurrentMonthYear()){
+        subscriptionData[this.subId-1].paymentHistory.forEach(payData => {
+            if (this.formatDate(payData.billDate) == this.getCurrentMonthYear() && !payData.secMin){
                 this.currentSubscription = true;
             }
         })
@@ -92,7 +91,6 @@ export default class ViewSubscription extends Component {
         } else {
             this.viewSub.isActive = false;
         }
-        console.log(this.durationCycle)
         if(this.billCycle == 'Seconds' && this.durationCycle){
             if(this.status == 'Active'){
                 const time = this.durationCycle * 1000;
@@ -100,7 +98,6 @@ export default class ViewSubscription extends Component {
             } else {
                 alert('Status is Inactive. Payment could not be deducted');
                 this.durationCycle = null;
-                console.log('printed')
             }
         }
 
@@ -154,7 +151,6 @@ export default class ViewSubscription extends Component {
                 this.durationCycle = null;
             }
         }
-
         this.back();
     }
 
@@ -198,10 +194,11 @@ export default class ViewSubscription extends Component {
     @action
     cancelSub() {
         if(confirm("Are you sure want to cancel current subscription") == true){
-            subscriptionData[this.subId].paymentHistory.forEach(payData => {
-                if (this.formatDate(payData.billDate) == this.getCurrentMonthYear()){
+            subscriptionData[this.subId-1].paymentHistory.forEach(payData => {
+                if (this.formatDate(payData.billDate) == this.getCurrentMonthYear() && !payData.secMin){
                     this.wallet.creditAmount(Number(payData.amnt))
                     this.initWallet(Number(payData.amnt))
+                this.router.transitionTo('home')
                 }
             });
         }
@@ -211,6 +208,22 @@ export default class ViewSubscription extends Component {
     back() {
         this.router.transitionTo('subscription')
     }
+
+    getCurrentTime() {
+        const now = new Date();
+        let hours = now.getHours();
+        const minutes = now.getMinutes();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+      
+        hours = hours % 12;
+        hours = hours < 10 ? '0' + hours : 12;
+      
+        const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+      
+        return hours + ':' + formattedMinutes + ' ' + ampm;
+      }
+      
+
 
     getCurrentDate() {
         const today = new Date();
@@ -227,11 +240,14 @@ export default class ViewSubscription extends Component {
                 date: this.getCurrentDate(),
                 name: this.subName,
                 imgPath: this.imgPath,
+                time: this.getCurrentTime(),
                 statement: 'Received',
                 sent: false,
                 method: 'refund',
                 amount: amnt
             })
-            console.log(walletHistory)
+            this.wallet.loadData();
         }
+
+        
 }

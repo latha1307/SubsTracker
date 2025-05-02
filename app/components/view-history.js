@@ -24,9 +24,10 @@ export default class ViewHistory extends Component {
             this.subName = this.viewHistory.subName;
             this.subId = this.viewHistory.id;
             this.imgPath = this.viewHistory.imgPath;
-            this.historyData = subscriptionData[this.subId].paymentHistory.slice().reverse();
+            this.historyData = subscriptionData[this.subId - 1].paymentHistory.slice().reverse();
         }
         console.log(this.viewHistory)
+        console.log(this.historyData)
         console.log(subscriptionData)
     }
 

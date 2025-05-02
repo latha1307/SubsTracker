@@ -75,22 +75,22 @@ export default class AddNewPayment extends Component {
             this.deductFromWallet();
         }
         if (this.amountdebited) {
-        await this.subData[this.subId].paymentHistory.push({
+        await subscriptionData[this.subId - 1].paymentHistory.push({
             billDate: this.formatDate(this.billDate),
             subPlan: this.plan,
             amnt: this.amount,
-            payMethod: this.pay
+            payMethod: this.pay,
+            secMin: false,
         })
     }   
-        console.log('updated history', this.subData)
-        this.router.transitionTo('view-history', this.subId)
+    this.router.transitionTo('view-history', this.subId)
     }
 
     @action
     deductFromWallet() {
         this.amountdebited = this.wallet.debitAmount(this.amount)
         if (this.amountdebited) {
-            this.initWallet(this.amount)
+            this.wallet.initWallet( this.addPay, this.amount,false)
         }
     }
 
@@ -102,19 +102,5 @@ export default class AddNewPayment extends Component {
         return `${day}-${month}-${year}`;
       }
 
-    @action
-    initWallet(amnt) {
-        walletHistory.push({
-            id: walletHistory.length + 1,
-            date: this.getCurrentDate(),
-            name: this.subName,
-            imgPath: this.imgPath,
-            statement: 'Paid',
-            sent: true,
-            method: 'debit',
-            amount: amnt
-        })
-        console.log(walletHistory)
-    }
 
 }
