@@ -42,13 +42,10 @@ export default class WalletService extends Service {
     debitAmount(amnt) {  
         if(this.amount < 0){
             alert('Insufficient balance. Please add money to wallet')
-            console.log('executing')
-            this.clearAllIntervals()
             return false
         }
         if(this.amount-amnt < 0){
             alert('Insufficient balance. Please add money to wallet')
-            this.clearAllIntervals()
             return false
         }
         
