@@ -42,6 +42,7 @@ export default class WalletService extends Service {
     debitAmount(amnt) {  
         if(this.amount < 0){
             alert('Insufficient balance. Please add money to wallet')
+            console.log('executing')
             this.clearAllIntervals()
             return false
         }
@@ -121,7 +122,8 @@ export default class WalletService extends Service {
                         duration: time,
                         array: data
                     })
-                    this.clearIntervalById(interval)
+                    const autopayIndex = this.autopay.indexOf(this.autopay.find(arr => arr.id == data.id))
+                    this.clearIntervalById(autopayIndex)
                     return
                 }
                 if(this.checkSubscriptionExist(data.id)){
