@@ -7,9 +7,9 @@ import { A } from '@ember/array';
 export default class SubscriptionService extends Service {
     @tracked subscriptionStatus = 'All'
     @tracked subscriptionArray = JSON.parse(localStorage.getItem('subscriptionData')) || [];
-
     constructor() {
         super(...arguments);
+        this.loadData();
     }
 
     @action 

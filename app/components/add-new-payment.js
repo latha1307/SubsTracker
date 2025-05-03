@@ -1,9 +1,7 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { subscriptionData } from '../data/subscriptionData';
 import { service } from '@ember/service';
-import SubscriptionModel from '../models/subscription';
 
 export default class AddNewPayment extends Component {
     @service router;

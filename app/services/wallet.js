@@ -1,7 +1,6 @@
 import Service from '@ember/service';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import { subscriptionData } from '../data/subscriptionData';
 import { A } from '@ember/array';
 import { service } from '@ember/service';
 
