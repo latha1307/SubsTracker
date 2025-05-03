@@ -26,15 +26,8 @@ export default class WalletService extends Service {
     }
 
     loadData() {
-        if(this.currentFilterStatus == 'all'){
-            this.walletData = A(walletHistory);
-        } else if(this.currentFilterStatus == 'credit') {
-            this.walletData = A(walletHistory.filter(val => val.method == 'credit'));
-        } else if(this.currentFilterStatus == 'debit') {
-            this.walletData = A(walletHistory.filter(val => val.method == 'debit'));
-        } else {
-            this.walletData = A(walletHistory.filter(val => val.method == 'refund'));
-        }
+
+        this.walletData = A(this.walletData);
         localStorage.setItem('walletHistoryData', JSON.stringify(this.walletData))
     }
 
@@ -163,8 +156,8 @@ export default class WalletService extends Service {
 
     @action
     initWallet(data, amnt, historyNeed) {
-        walletHistory.push({
-            id: walletHistory.length + 1,
+        this.walletData.push({
+            id: this.walletData.length + 1,
             date: this.getCurrentDate(),
             name: data.subName,
             imgPath: data.imgPath,

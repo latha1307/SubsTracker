@@ -70,6 +70,10 @@ export default class AddNewPayment extends Component {
     @action
     async addNewPay(e) {
         e.preventDefault();
+        if (this.status == 'Inactive'){
+            alert('Status is Inactive. Payment could not be deducted.')
+            return
+        }
         if (this.pay == 'Wallet') {
             this.deductFromWallet();
         }
