@@ -1,14 +1,11 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { subscriptionData } from '../data/subscriptionData';
-import SubscriptionModel from '../models/subscription';
 import { service } from '@ember/service';
 
 export default class Subscription extends Component {
     @service subscription;
 
-    @tracked subData = []
     activeSubCount = 0;
     inActiveSubCount = 0;
     amountSpent = 0;
@@ -17,18 +14,14 @@ export default class Subscription extends Component {
     
     constructor() {
         super(...arguments)
-        this.loadData();
         this.updateStatus();
         this.updateAmount();
     }
 
-    @action loadData() {
-        this.subData = (subscriptionData ?? []).map((e) => new SubscriptionModel(e))
-    }
     
     @action updateStatus() {
-        for (let index = 0; index < this.subData.length; index++) {
-            if (this.subData[index].status == 'Active' ) {
+        for (let index = 0; index < this.subscription.subscriptionArray.length; index++) {
+            if (this.subscription.subscriptionArray[index].status == 'Active' ) {
                 this.activeSubCount += 1;
             }
             else{
@@ -80,18 +73,18 @@ export default class Subscription extends Component {
       
 
     @action updateAmount() {
-        for (let i = 0; i < this.subData.length; i++) {
+        for (let i = 0; i < this.subscription.subscriptionArray.length; i++) {
 
-            this.subData[i].paymentHistory.forEach(payData => {
-                if (this.subData[i].status == 'Active' ){
+            this.subscription.subscriptionArray[i].paymentHistory.forEach(payData => {
+                if (this.subscription.subscriptionArray[i].status == 'Active' ){
                     if (this.formatDate(payData.billDate) == this.getCurrentMonthYear()){
                         this.addSpentAmount(payData.amnt)
                     }
                 }
             });
 
-            if(this.subData[i].status == 'Inactive'){
-                this.addSavedAmount(this.subData[i].amount)
+            if(this.subscription.subscriptionArray[i].status == 'Inactive'){
+                this.addSavedAmount(this.subscription.subscriptionArray[i].amount)
             }
         }
     }

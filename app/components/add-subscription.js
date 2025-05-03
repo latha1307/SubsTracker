@@ -1,14 +1,14 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { subscriptionData } from '../data/subscriptionData';
 import SubscriptionModel from '../models/subscription';
 import { service } from '@ember/service';
-import PaymentHistoryModel from '../models/payment-history';
 import { suggestData } from '../data/suggestedSub';
 
 export default class AddSubscription extends Component {
     @service router;
+    @service subscription;
+
     @tracked subData = [];
     @tracked payHistory = [];
     @tracked cycle=[ 'Seconds', 'Minutes', 'Monthly', '3-Months', 'Yearly'];
@@ -59,8 +59,8 @@ export default class AddSubscription extends Component {
     @action
     async addSubscription(e) {
         e.preventDefault()
-            subscriptionData.push({
-                id: subscriptionData.length + 1,
+            this.subscription.subscriptionArray.push({
+                id: this.subscription.subscriptionArray.length + 1,
                 subName: this.subName,
                 plan: this.plan,
                 billCycle: this.billCycle,
@@ -73,8 +73,7 @@ export default class AddSubscription extends Component {
                 paymentHistory: []
             })
         this.resetForm()
-        console.log(subscriptionData)
-        this.loadData()
+        this.subscription.loadData()
 
         this.router.transitionTo('subscription')
 

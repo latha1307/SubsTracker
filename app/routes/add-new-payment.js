@@ -1,9 +1,11 @@
 import Route from '@ember/routing/route';
-import { subscriptionData } from '../data/subscriptionData';
+import { service } from '@ember/service';
 
 export default class AddNewPaymentRoute extends Route {
-        model(params) {
+    @service subscription;
+
+    model(params) {
         const subId = params.id;
-        return subscriptionData.find((sub) => sub.id === Number(subId));
+        return this.subscription.subscriptionArray.find((sub) => sub.id === Number(subId));
     }
 }

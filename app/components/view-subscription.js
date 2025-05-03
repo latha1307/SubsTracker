@@ -2,11 +2,11 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { service } from '@ember/service';
-import { subscriptionData } from '../data/subscriptionData';
 
 export default class ViewSubscription extends Component {
     @service router;
     @service wallet;
+    @service subscription;
 
     @tracked subName = '';
     @tracked subId = 0;
@@ -46,7 +46,7 @@ export default class ViewSubscription extends Component {
     }
 
     checkCurrentSub() {
-        subscriptionData[this.subId-1].paymentHistory.forEach(payData => {
+        this.subscription.subscriptionArray[this.subId-1].paymentHistory.forEach(payData => {
             if (this.formatDate(payData.billDate) == this.getCurrentMonthYear() && !payData.secMin){
                 this.currentSubscription = true;
             }
@@ -155,11 +155,11 @@ export default class ViewSubscription extends Component {
 
     @action
     deleteSubb(){
-        const index = subscriptionData.indexOf(this.viewSub);
+        const index = this.subscription.subscriptionArray.indexOf(this.viewSub);
         
         if (index > -1){
             if (confirm('Are you sure want to delete the subscription') == true){
-                subscriptionData.splice(index, 1);
+                this.subscription.subscriptionArray.splice(index, 1);
                 this.back();
             }
         }
@@ -193,7 +193,7 @@ export default class ViewSubscription extends Component {
     @action
     cancelSub() {
         if(confirm("Are you sure want to cancel current subscription") == true){
-            subscriptionData[this.subId-1].paymentHistory.forEach(payData => {
+            this.subscription.subscriptionArray[this.subId-1].paymentHistory.forEach(payData => {
                 if (this.formatDate(payData.billDate) == this.getCurrentMonthYear() && !payData.secMin){
                     this.wallet.creditAmount(Number(payData.amnt))
                     this.initWallet(Number(payData.amnt))

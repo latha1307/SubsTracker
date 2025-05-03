@@ -8,9 +8,9 @@ import SubscriptionModel from '../models/subscription';
 export default class AddNewPayment extends Component {
     @service router;
     @service wallet;
+    @service subscription;
 
     @tracked subName = '';
-    @tracked subData = [];
     @tracked imgPath = '';
     @tracked subId = 0;
     @tracked imgPath = '';
@@ -31,7 +31,6 @@ export default class AddNewPayment extends Component {
     paymentMethods = ['card', 'UPI', 'Net-Banking', 'Wallet']
     constructor() {
         super(...arguments);
-        this.loadData();
         this.addPay = this.args.addPay;
         if(this.addPay){
             this.subName = this.addPay.subName;
@@ -46,9 +45,6 @@ export default class AddNewPayment extends Component {
         }
     }
 
-    @action loadData() {
-        this.subData = (subscriptionData ?? []).map((e) => new SubscriptionModel(e))
-    }
 
     setSubName= (e) => {
         this.subName = e.target.value; 
@@ -78,7 +74,7 @@ export default class AddNewPayment extends Component {
             this.deductFromWallet();
         }
         if (this.amountdebited) {
-        await subscriptionData[this.subId - 1].paymentHistory.push({
+        await this.subscription.subscriptionArray[this.subId - 1].paymentHistory.push({
             billDate: this.formatDate(this.billDate),
             subPlan: this.plan,
             amnt: this.amount,
