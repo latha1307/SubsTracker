@@ -56,7 +56,7 @@ export default class Home extends Component {
         const ampm = hours >= 12 ? 'PM' : 'AM';
       
         hours = hours % 12;
-        hours = hours < 10 ? '0' + hours : 12;
+        hours = hours ? hours : 12;
       
         const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
       
@@ -75,8 +75,8 @@ export default class Home extends Component {
 
     @action
     initWallet(amnt) {
-        walletHistory.push({
-            id: walletHistory.length + 1,
+        this.wallet.walletData.push({
+            id: this.wallet.walletData.length + 1,
             date: this.getCurrentDate(),
             name: 'Bank',
             imgPath: '/assets/images/courthouse.png',
