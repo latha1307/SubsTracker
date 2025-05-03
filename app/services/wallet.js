@@ -3,8 +3,11 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { subscriptionData } from '../data/subscriptionData';
 import { A } from '@ember/array';
+import { service } from '@ember/service';
 
 export default class WalletService extends Service {
+    @service subscription;
+
     @tracked amount = Number(localStorage.getItem('walletAmount'));
     @tracked autopay = [];
     @tracked workingAutopay = [];
@@ -56,8 +59,8 @@ export default class WalletService extends Service {
     }
 
     checkSubscriptionExist(id) {
-        const subExist = subscriptionData.find(data => data.id == id);
-        const subActive = subscriptionData[id-1]?.isActive;
+        const subExist = this.subscription.subscriptionArray.find(data => data.id == id);
+        const subActive = this.subscription.subscriptionArray[id-1]?.isActive;
         return (subActive && subExist)
     }
 
@@ -115,18 +118,18 @@ export default class WalletService extends Service {
                     return
                 }
                 if(this.checkSubscriptionExist(data.id)){
-                this.amount -= amnt
-                this.initWallet(data, amnt, true) 
+                    this.amount -= amnt
+                    this.initWallet(data, amnt, true) 
                 }
                 localStorage.setItem('walletAmount', this.amount);
             }, time, data.id)
         
-    }
-    else{
-        const autopayIndex = this.autopay.indexOf(this.autopay.find(arr => arr.id == data.id))
-        this.clearIntervalById(autopayIndex)
-        console.log(this.autopay)
-    }
+        }
+        else{
+            const autopayIndex = this.autopay.indexOf(this.autopay.find(arr => arr.id == data.id))
+            this.clearIntervalById(autopayIndex)
+            console.log(this.autopay)
+        }
     }
 
     getCurrentTime() {
@@ -166,7 +169,7 @@ export default class WalletService extends Service {
             amount: Number(amnt)
         })
         if(historyNeed){
-        subscriptionData[data.id - 1].paymentHistory.push({
+        this.subscription.subscriptionArray[data.id - 1].paymentHistory.push({
             billDate: this.getCurrentDate(),
             subPlan: data.plan,
             amnt: Number(amnt),

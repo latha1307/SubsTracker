@@ -2,6 +2,7 @@ import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 //import { subscriptionData } from '../data/subscriptionData';
+import { A } from '@ember/array';
 
 export default class SubscriptionService extends Service {
     @tracked subscriptionStatus = 'All'
@@ -9,12 +10,11 @@ export default class SubscriptionService extends Service {
 
     constructor() {
         super(...arguments);
-        this.loadData();
     }
 
     @action 
     loadData() {
-        this.subscriptionArray = this.subscriptionArray;
+        this.subscriptionArray = A(this.subscriptionArray);
         localStorage.setItem('subscriptionData', JSON.stringify(this.subscriptionArray))
     }
 
