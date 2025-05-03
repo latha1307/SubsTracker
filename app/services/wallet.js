@@ -3,7 +3,6 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { subscriptionData } from '../data/subscriptionData';
 import { A } from '@ember/array';
-import { walletHistory } from '../data/walletHistory'
 
 export default class WalletService extends Service {
     @tracked amount = Number(localStorage.getItem('walletAmount'));
@@ -26,7 +25,6 @@ export default class WalletService extends Service {
     }
 
     loadData() {
-
         this.walletData = A(this.walletData);
         localStorage.setItem('walletHistoryData', JSON.stringify(this.walletData))
     }

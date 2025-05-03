@@ -157,6 +157,21 @@
     cursor: pointer;
 }
 
+.wallet-nav-container-subscription{
+    display: flex;
+    background-color: white;
+    border: 1px solid #9d9d9d;
+    border-radius: 10px;
+    width: 186px;
+    cursor: pointer;
+}
+
+.wallet-nav-container-subscription h4{
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 10px;
+}
+
 .wallet-nav-container h4{
     font-weight: 500;
     padding: 10px;

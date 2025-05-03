@@ -3,13 +3,17 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { subscriptionData } from '../data/subscriptionData';
 import SubscriptionModel from '../models/subscription';
+import { service } from '@ember/service';
 
 export default class Subscription extends Component {
+    @service subscription;
+
     @tracked subData = []
     activeSubCount = 0;
     inActiveSubCount = 0;
     amountSpent = 0;
     amountSaved = 0;
+
     
     constructor() {
         super(...arguments)
@@ -41,6 +45,10 @@ export default class Subscription extends Component {
         return `${month}-${year}`;
       }
       
+    @action
+    currentStatus(val) {
+        this.subscription.subscriptionStatus = val;
+    }
 
     @action
     formatDate(inputDate) {

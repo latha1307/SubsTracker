@@ -41,10 +41,34 @@
             </div>
         </div>
     </div>
-    <h2>Overall Subscription</h2>
+    <div class="wallet-nav-container-subscription">
+        <div class="wallet-nav-selected" {{on 'click' (fn this.currentStatus 'All')}} >
+                {{#if (eq this.subscription.subscriptionStatus 'All')}}
+                    <h4 style="background-color: rgb(213, 235, 253);">All</h4>
+                {{else}}
+                    <h4>All</h4>
+                {{/if}}
+                
+            </div>
+            <div class="wallet-nav-selected" {{on 'click' (fn this.currentStatus 'Active')}} >
+                {{#if (eq this.subscription.subscriptionStatus 'Active')}}
+                    <h4 style="background-color: rgb(213, 235, 253);">Active</h4>
+                {{else}}
+                    <h4>Active</h4>
+                {{/if}}
+                
+            </div>
+            <div class="wallet-nav-selected" {{on 'click' (fn this.currentStatus 'Inactive')}}>
+                {{#if (eq this.subscription.subscriptionStatus 'Inactive')}}
+                    <h4 style="background-color: rgb(213, 235, 253);">Inactive</h4>
+                {{else}}
+                    <h4>Inactive</h4>
+                {{/if}}
+            </div>
+        </div>
 
     <div class="overall-sub-cards">
-        {{#each this.subData as |item|}}
+        {{#each (reverse-array this.subscription.subscriptionArray this.subscription.subscriptionStatus) as |item|}}
             <div class="sub-card">
                 <div class="card-img">
                     {{#if item.imgPath}}

@@ -1,12 +1,12 @@
 import { module, test } from 'qunit';
 import { setupTest } from 'task1/tests/helpers';
 
-module('Unit | Service | tracking-amount', function (hooks) {
+module('Unit | Service | subscription', function (hooks) {
   setupTest(hooks);
 
   // TODO: Replace this with your real tests.
   test('it exists', function (assert) {
-    let service = this.owner.lookup('service:tracking-amount');
+    let service = this.owner.lookup('service:subscription');
     assert.ok(service);
   });
 });
